@@ -17,9 +17,9 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \fancyhf{}
-\setlength{\headheight}{60.55pt}
+\setlength{\headheight}{32.25pt}
 \lhead{}
-\rhead{\includegraphics[height=2.00cm]{./vim.png}}
+\rhead{\includegraphics[height=1.00cm]{./vim.png}}
 \setlength{\footskip}{12.00pt}
 \lfoot{}
 \rfoot{str. {\thepage}/{\pageref{LastPage}}}
@@ -42,8 +42,12 @@
         B               & riječ ulijevo (+ interpunkcija)    \\ \hline 
         e               & kraj riječi (- interpunkcija)      \\ \hline 
         E               & kraj riječi (+ interpunkcija)      \\ \hline \hline
-        \string^ 0      & početak linije                     \\ \hline
-        \string$        & kraj linije                        \\ \hline \hline
+        {\string ^} 0   & početak linije                     \\ \hline
+        \$              & kraj linije                        \\ \hline \hline
+        (               & početak rečenice                   \\ \hline
+        )               & kraj rečenice                      \\ \hline
+        \{              & početak odlomka                    \\ \hline
+        \}              & kraj odlomka                       \\ \hline \hline
         gg              & prva linija                        \\ \hline
         G               & zadnja linija                      \\ \hline \hline
         ctrl+f          & page up                            \\ \hline
@@ -52,14 +56,336 @@
     \end{tabular}
     \begin{center}
         \large
-        Kod navigacije općenito vrijedi: 
-        \\
-        \textcolor{ForestGreen}{\texttt{\textbf{<broj><pokret>}}}
+        \textcolor{ForestGreen}{\texttt{\textbf{<pomak> = <broj><pokret>}}}
         \\
         ... čime će se \texttt{<pokret>} ponoviti \texttt{<broj>} puta. 
     \end{center}
     \newpage
 
-    Blabla...
+    % Umetanje
+    \section*{\color{ForestGreen} Umetanje}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        i               & umetanje teksta prije kursora                   \\ \hline
+        a               & umetanje teksta nakon kursora                   \\ \hline \hline
+        I               & umetanje teksta na početku linije               \\ \hline 
+        A               & umetanje teksta na kraju linije                 \\ \hline \hline
+        o               & umetanje teksta ispod linije                    \\ \hline
+        O               & umetanje teksta iznad linije                    \\ \hline \hline
+        J               & \textit{append} donje linije na trenutnu liniju \\ \hline
+    \end{tabular}
+    \begin{center}
+        \large
+        \textcolor{ForestGreen}{\texttt{\textbf{<broj><naredba><tekst>}}}
+        \\
+        ... čime će se \texttt{<naredba>} za umetanje (s tekstom) ponoviti \texttt{<broj>} puta. 
+    \end{center}
 
-\end{document}
+    % Brisanje
+    \section*{\color{ForestGreen} Brisanje}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        x       & brisanje znaka na kursoru (\textit{delete})               \\ \hline
+        X       & brisanje znaka ispred kursora (\textit{backspace})        \\ \hline \hline
+        d       & naredba za brisanje                                       \\ \hline
+        dd      & brisanje cijele linije                                    \\ \hline
+    \end{tabular}
+    \begin{center}
+        \large
+        \textcolor{ForestGreen}{\texttt{\textbf{<naredba> = <broj><naredba><pokret>}}}
+        \\
+        ... čime će se \texttt{<naredba>} \textit{delete} ponoviti \texttt{<broj>} puta. 
+    \end{center}
+    \newpage
+
+    % Kopiranje
+    \section*{\color{ForestGreen} Kopiranje}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        y       & naredba za kopiranje                                   \\ \hline
+        yy      & kopiranje cijele linije                                \\ \hline \hline
+        p       & naredba za kopiranje                                   \\ \hline
+        P       & kopiranje cijele linije                                \\ \hline
+    \end{tabular}
+    \begin{center}
+        \large
+        \textcolor{ForestGreen}{\texttt{\textbf{<naredba> = <broj><naredba><pokret>}}}
+        \\
+        ... čime će se \texttt{<naredba>} \textit{yank} ili \textit{put} ponoviti \texttt{<broj>} puta. 
+    \end{center}
+    \newpage
+
+    % Registri
+    \section*{\color{ForestGreen} Registri}
+    Sve što je obrisano ili kopirano se sprema u \textit{system-wide} registre.
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        :reg            & pregled registra                                                  \\ \hline \hline
+        ""              & neimenovani (default) registar za y, d i x                        \\ \hline
+        "0              & registar za y                                                     \\ \hline
+        "1 - "9         & registar za d i x                                                 \\ \hline \hline
+        "a - "z         & registri za bilošto                                               \\ \hline
+        "A - "Z         & registri za \textit{append} u registre \texttt{"a - "z}           \\ \hline
+        "\_             & \textit{black hole} registar                                      \\ \hline
+        "+ "*           & sistemski \textit{clipboard}                                      \\ \hline
+    \end{tabular}
+    \begin{center}
+        \large
+        \textcolor{ForestGreen}{\texttt{\textbf{<registar><naredba>}}}
+        \\
+        ... čime će se \texttt{<operacija>} (\textit{delete}, \textit{yank}, \textit{put}) spremiti/učitati u/iz registar/a. 
+    \end{center}
+    \newpage
+    
+    % Pretraga
+    \section*{\color{ForestGreen} Pretraga}
+    \subsection*{\color{ForestGreen} Linijske pretrage}
+    Kursor se pozicionira na znaku:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        f<znak>   & pretraga znaka unaprijed            \\ \hline
+        F<znak>   & pretraga znaka unazad               \\ \hline
+    \end{tabular}
+    \\
+    Kursor se pozicionira ispred znaka:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        t<znak>   & pretraga znaka unaprijed            \\ \hline
+        T<znak>   & pretraga znaka unazad               \\ \hline
+    \end{tabular}
+    \\
+    Ponavljanje pretrage:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        ;         & ponavljanje pretrage u istom smjeru         \\ \hline
+        ,         & ponavljanje pretrage u suprotnom smjeru     \\ \hline
+    \end{tabular}
+    \subsection*{\color{ForestGreen} Globalne pretrage}
+    Pretraga stringova:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        /<string>   & pretraga unaprijed            \\ \hline
+        ?<string>   & pretraga unazad               \\ \hline
+    \end{tabular}
+    \\
+    Pretraga riječi ispod kursora:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        *           & pretraga unaprijed        \\ \hline
+        \#          & pretraga unazad           \\ \hline
+    \end{tabular}
+    \\
+    Ponavljanje pretrage:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        n         & ponavljanje pretrage u istom smjeru         \\ \hline
+        N         & ponavljanje pretrage u suprotnom smjeru     \\ \hline
+    \end{tabular}
+    \begin{center}
+        \large
+        Pretraga funkcionira kao pokret te vrijede sva pravila kombiniranja naredbi!
+    \end{center}
+    \newpage
+    
+    % Zamjena
+    \section*{\color{ForestGreen} Zamjena}
+    \subsection*{\color{ForestGreen} Klasična zamjena}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        r                   & zamjena jednog znaka ispod kursora drugim znakom                                              \\ \hline
+        R                   & zamjena znak-po-znak do prekida unosa                                                         \\ \hline                            
+        s                   & zamjena jednog znaka ispod kursora s tekstom                                                  \\ \hline \hline
+        c                   & naredba za zamjenu                                                                            \\ \hline
+        cc                  & zamjena cijele linije                                                                         \\ \hline \hline
+        $\sim$              & zamjena znaka \textit{lowercase} $\rightleftarrows$ \textit{uppercase}                        \\ \hline
+        g$\sim$             & naredba za zamjenu znaka \textit{lowercase} $\rightleftarrows$ \textit{uppercase}             \\ \hline
+        g$\sim$$\sim$       & zamjena reda \textit{lowercase} $\leftrightarrows$ \textit{uppercase}                         \\ \hline \hline
+        gu                  & naredba za zamjenu znaka \textit{uppercase} $\rightarrow$ \textit{lowerrcase}                 \\ \hline
+        guu                 & zamjena reda \textit{uppercase} $\rightarrow$ \textit{lowercase}                              \\ \hline \hline
+        gU                  & naredba za zamjenu znaka \textit{lowercase} $\rightarrow$ \textit{uppercase}                  \\ \hline
+        gUU                 & zamjena reda \textit{lowercase} $\rightarrow$ \textit{uppercase}                              \\ \hline
+    \end{tabular}
+    \begin{center}
+        \large
+        \textcolor{ForestGreen}{\texttt{\textbf{<naredba> = <broj><naredba><pokret>}}}
+        \\
+        ... čime će se \texttt{<naredba>} \texttt{c}, \texttt{g$\sim$}, \texttt{gu} ili \texttt{gU} ponoviti \texttt{<broj>} puta. 
+    \end{center}
+    \subsection*{\color{ForestGreen} \texttt{sed}-like zamjena}
+    \begin{center}
+        \large
+        \textcolor{ForestGreen}{\texttt{\textbf{:<opseg>s/<staro>/<novo>/[g]}}}
+        \\
+        ... čime se naredba zamjene \texttt{<staro>} za \texttt{<novo>} vrši na \texttt{<opseg>}.
+        \\
+        \texttt{<staro>} može uključivati i regularne izraze.
+        \\
+        Ako je uključen \textit{flag} \texttt{g} onda se zamjena radi na svim pojavljivama na liniji, a ne samo prvom.
+        \begin{itemize}
+            \item \texttt{<opseg>} može biti npr.:
+            \begin{itemize}
+                \item \texttt{\%} na svim linijima
+                \item \texttt{.,\$} od trenutne do zadnje linije
+                \item \texttt{1,.} od prve do trenutne linije
+                \item \texttt{3} samo na trećoj liniji
+                \item \texttt{3,5} od treće do pete linije
+            \end{itemize}
+        \end{itemize}
+    \end{center}
+    \newpage
+
+    % Objekti
+    \section*{\color{ForestGreen} Objekti}
+    Vim prepoznaje pojam "objekata".
+    Objekti u Vim-u su:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        w         & riječ                           \\ \hline
+        s         & rečenica                        \\ \hline
+        p         & paragraf                        \\ \hline
+        ( )       & sadržaj oblih zagrada           \\ \hline
+        [ ]       & sadržaj uglatih zagrada         \\ \hline
+        \{ \}     & sadržaj vitičastih zagrada      \\ \hline
+        < >       & sadržaj izlomljenih zagrada     \\ \hline
+        "         & sadržaj navodnika               \\ \hline
+        '         & sadržaj navodnika               \\ \hline
+        `         & sadržaj navodnika               \\ \hline
+        t         & sadržaj \textit{tag}-a          \\ \hline
+    \end{tabular}
+    \\
+    Nad objektima moguće je izvoditi radnje kao što su \textit{delete}, \textit{yank}, \textit{change} i dr. 
+    Te radnje se modificiraju modifikatorima:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        i         & ne uključuje "separator" objekta    \\ \hline
+        a         & uključuje "separator" objekata      \\ \hline
+    \end{tabular}
+    \begin{center}
+        \large
+        \textcolor{ForestGreen}{\texttt{\textbf{<naredba><modifikator><objekt>}}}
+        \\
+        ... čime će se izvršiti \texttt{<naredba>} unutar ili nad cijelim \texttt{<objektom>}. 
+    \end{center}
+    \newpage
+
+    % Macro
+    \section*{\color{ForestGreen} Macro}
+    Macroi su niz naredbi, a služe za ponavljanje kompleksnih radnji tako što se iste snimaju i pohranjuju u zasebne registre.
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        qa                              & započinje snimanje macroa koji će se pohraniti u registar \texttt{a}                                                      \\ \hline
+        q                               & završava snimanje macroa                                                                                                  \\ \hline
+        @a                              & izvršava snimljeni macro koji je pohranjen u registar \texttt{a}                                                          \\ \hline
+        :<opseg>normal @a               & izvršava snimljeni macro koji je pohranjen u registar \texttt{a} nad opsegom                                              \\ \hline
+        "ap                             & \texttt{put} registra u obliku teksta (znakovi za \texttt{esc} i sl. se upisuju u \textit{literal mode}-u nakon Ctrl+v)   \\ \hline
+        "add                            & brisanje/pohranjivanje teksta (niza naredbi) u registar                                                                   \\ \hline
+        let @a = '<macro>'              & upis \textit{macro}-a u konfiguracijsku datoteku \texttt{.vimrc}                                                          \\ \hline
+    \end{tabular}
+    \newpage
+    
+    % Međuspremnici
+    \section*{\color{ForestGreen} Međuspremnici}
+    Međuspremnici su mjesta u memoriji gdje su učitane Vim datoteke.
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        :buffers :ls                                & otvara listu međuspremnika (otvoreni fileovi i trenutne pozicije kursora)     \\ \hline
+        :b 1                                        & otvara međuspremnik 1                                                         \\ \hline
+        :b file1.txt                                & otvara file1.txt ako se on nalazi u međuspremniku                             \\ \hline
+        :bnext :bn                                  & otvara idući file                                                             \\ \hline
+        :bprevious :bp                              & otvara predhodni file                                                         \\ \hline
+        :bfirst :bf                                 & otvara prvi file                                                              \\ \hline
+        :blast :bl                                  & otvara zadnji file                                                            \\ \hline
+        <Ctrl>+{\string ^}                          & otvara ranije otvoreni file                                                   \\ \hline
+        :badd file3.txt :ba file3.txt               & dodaje file u međuspremnik                                                    \\ \hline                                                                                                        
+        :bdelete [file3.txt] :bd [file3.txt]        & uklanja trenutni file/[file3.txt] iz međuspremnika                            \\ \hline
+        :bufdo \%s/<staro>/<novo>/g                 & izvršava naredbu za sve fileove                                               \\ \hline
+    \end{tabular}         
+    \\
+    Međuspremnici imaju posebne "oznake" koji definiraju njihovo stanje učitanosti/prikaza.
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        a                                           & file je učitan i prikazan (active)                                            \\ \hline 
+        h                                           & file je učitan i nije prikazan (hidden)                                       \\ \hline                                  
+                                                    & file nije učitan i nije prikazan (samo su učitani metapodaci)                 \\ \hline
+        \%                                          & file koji se trenutno pregledava                                              \\ \hline
+        \#                                          & označava prethodno otvoreni file                                              \\ \hline
+        +                                           & označava da je file uređen od zadnjeg spremanja                               \\ \hline
+    \end{tabular}         
+    \newpage              
+    
+    % Prozori
+    \section*{\color{ForestGreen} Prozori}
+    U odvojene prozoru mogu se staviti datoteke koje su učitane u međuspremnike.
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        :split [file] :sp [file] Ctrl+w s           & otvara datoteku u još jednom prozoru (horizontalno)                           \\ \hline
+        :vsplit [file] :vs [file] Ctrl+w v          & otvara datoteku u još jednom prozoru (vertikalno)                             \\ \hline
+        :ball :ba                                   & otvara sve datoteke iz međuspremnika u svoje prozore                          \\ \hline
+        Ctrl+w q                                    & zatvara trenutni prozor                                                       \\ \hline
+        :only :on Ctrl+w o                          & zatvara sve prozore osim trenutnog                                            \\ \hline
+        :windo \%s/<staro>/<novo>/g                 & izvršava naredbu na svim prozorima                                            \\ \hline
+    \end{tabular}         
+    \\
+    Prozorima se upravlja sljedećim naredbama:
+    \\
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        Ctrl+w w                                    & prebacuje se u drugi prozor                                                   \\ \hline
+        Ctrl+w h                                    & prebacuje se u prozor lijevo                                                  \\ \hline
+        Ctrl+w l                                    & prebacuje se u prozor desno                                                   \\ \hline
+        Ctrl+w j                                    & prebacuje se u prozor dolje                                                   \\ \hline
+        Ctrl+w k                                    & prebacuje se u prozor gore                                                    \\ \hline \hline
+        Ctrl+w +                                    & povećava prozor (vertikalno)                                                  \\ \hline
+        Ctrl+w -                                    & smanjuje prozor (vertikalno)                                                  \\ \hline
+        Ctrl+w >                                    & povećava prozor (horizontalno)                                                \\ \hline
+        Ctrl+w <                                    & smanjuje prozor (horizontalno)                                                \\ \hline
+        Ctrl+w \_                                   & maksimizira prozor po horizontali                                             \\ \hline
+        Ctrl+w |                                    & maksimizira prozor po vertikali                                               \\ \hline
+        Ctrl+w =                                    & svi prozoru postaju jednake veličine                                          \\ \hline \hline
+        Ctrl+w r                                    & rotira sadržaj prozora (2 $\leftarrow$ 1, 3 $\leftarrow$ 2, 1 $\leftarrow$ 3) \\ \hline
+        Ctrl+w R                                    & rotira sadržaj prozora (obrnuti smjer od gornjeg)                             \\ \hline
+        Ctrl+w H                                    & pozicionira aktivni prozor lijevo                                             \\ \hline
+        Ctrl+w L                                    & pozicionira aktivni prozor desno                                              \\ \hline
+        Ctrl+w J                                    & pozicionira aktivni prozor dolje                                              \\ \hline
+        Ctrl+w K                                    & pozicionira aktivni prozor gore                                               \\ \hline
+    \end{tabular}         
+    \newpage              
+
+    % Ostalo
+    \section*{\color{ForestGreen} Ostalo}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        :e <datoteka>                   & učitavanja datoteke u međuspremnik                                  \\ \hline
+        :r <datoteka>                   & paste sadržaja datoteke na mjestu kursora                           \\ \hline
+        :w [<ime>]                      & spremanje promjena [u datoteku pod nazivom ime]                     \\ \hline
+        :wq [<ime>]                     & spremanje promjena [u datoteku pod nazivom ime] i izlazak           \\ \hline
+        :q!                             & izlazak bez spremanja promjena                                      \\ \hline
+        :e!                             & ponovno učitavanje datoteke prije svih promjena                     \\ \hline
+        :wall                           & spremanje promjena datoteka iz svih međuspremnika                   \\ \hline
+        :wqall                          & spremanje promjena i izlazak iz svih međuspremnika                  \\ \hline
+        :qall!                          & izlazak iz svih međuspremnika bez spremanja                         \\ \hline
+        :eall!                          & ponovno učitavanje svih međuspremnika prije promjena                \\ \hline
+        :h [<naredba>]                  & otvaranje prozora za pomoć [oko naredbe]                            \\ \hline
+        :E                              & otvaranje \textit{explorer}-a za datoteke                           \\ \hline
+        :f                              & dodatne informacije o trenutnoj datoteci                            \\ \hline
+        :! <naredba>                    & izvršavanje naredbe u terminalu pa vraćanje u Vim                   \\ \hline
+        :r! <naredba>                   & ispis standardnog izalza naredbe u Vim na mjesto kursora            \\ \hline
+        u                               & \textit{undo} svih promjena                                         \\ \hline
+        <Ctrl>+r                        & \textit{redo} svih promjena                                         \\ \hline
+        .                               & ponavljanje naredbe                                                 \\ \hline
+    \end{tabular}         
+    \newpage              
+\end{document}            
