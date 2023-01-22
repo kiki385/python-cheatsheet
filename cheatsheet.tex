@@ -12,6 +12,7 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{pifont}
 
 % Dodaj header i footer
 \pagestyle{fancy}
@@ -19,7 +20,7 @@
 \fancyhf{}
 \setlength{\headheight}{32.25pt}
 \lhead{}
-\rhead{\includegraphics[height=1.00cm]{./vim.png}}
+\rhead{\includegraphics[height=1.00cm]{./python.png}}
 \setlength{\footskip}{12.00pt}
 \lfoot{}
 \rfoot{str. {\thepage}/{\pageref{LastPage}}}
@@ -28,364 +29,544 @@
 
 \renewcommand{\arraystretch}{1.50}
 
-    % Navigacija
-    \section*{\color{ForestGreen} Navigacija}
+    \section*{\color{NavyBlue} Komentiranje}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        h               & lijevo                             \\ \hline
-        j               & dolje                              \\ \hline
-        k               & gore                               \\ \hline 
-        l               & desno                              \\ \hline \hline
-        w               & riječ udesno (- interpunkcija)     \\ \hline
-        W               & riječ udesno (+ interpunkcija)     \\ \hline
-        b               & riječ ulijevo (- interpunkcija)    \\ \hline 
-        B               & riječ ulijevo (+ interpunkcija)    \\ \hline 
-        e               & kraj riječi (- interpunkcija)      \\ \hline 
-        E               & kraj riječi (+ interpunkcija)      \\ \hline \hline
-        {\string ^} 0   & početak linije                     \\ \hline
-        \$              & kraj linije                        \\ \hline \hline
-        (               & početak rečenice                   \\ \hline
-        )               & kraj rečenice                      \\ \hline
-        \{              & početak odlomka                    \\ \hline
-        \}              & kraj odlomka                       \\ \hline \hline
-        gg              & prva linija                        \\ \hline
-        G               & zadnja linija                      \\ \hline \hline
-        ctrl+f          & page up                            \\ \hline
-        ctrl+b          & page down                          \\ \hline \hline
-        z               & fokus na trenutnu liniju           \\ \hline
+        \# & početak linijskog komentara \\ \hline
     \end{tabular}
-    \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{<pomak> = <broj><pokret>}}}
-        \\
-        ... čime će se \texttt{<pokret>} ponoviti \texttt{<broj>} puta. 
-    \end{center}
-    \newpage
 
-    % Umetanje
-    \section*{\color{ForestGreen} Umetanje}
+    \section*{\color{NavyBlue} Osnovni tipovi varijabli / objekata}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        i               & umetanje teksta prije kursora                   \\ \hline
-        a               & umetanje teksta nakon kursora                   \\ \hline \hline
-        I               & umetanje teksta na početku linije               \\ \hline 
-        A               & umetanje teksta na kraju linije                 \\ \hline \hline
-        o               & umetanje teksta ispod linije                    \\ \hline
-        O               & umetanje teksta iznad linije                    \\ \hline \hline
-        J               & \textit{append} donje linije na trenutnu liniju \\ \hline
+        str & (string), (uređeni) niz znakova
+        \\ \hline
+        int & (integer), cijeli broj
+        \\ \hline
+        float & broj s pomičnim zarezom
+        \\ \hline
+        bool & (boolean), logička varijabla \textbf{True} ili \textbf{False}
+        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Složeni tipovi varijabli / objekata}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        range   & raspon - uređen (indeksiran) niz integera                                             \\ \hline
+        list    & lista - uređena (indeksirana) podatkovna kolekcija (niz objekata)                       \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Konverzije varijabli}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        str(object)     & konverzija u string  \\ \hline
+        int(object)     & konverzija u integer \\ \hline
+        float(object)   & konverzija u float   \\ \hline
+        bool(object)    & konverzija u boolean \\ \hline
+        list(iterable)  & konverzija (podatke kolekcije) u listu \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Funkcije s objektima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        len(\textit{object}) & vraća broj znakova u objektu
+        \\ \hline
+        print(\textit{object}) & ispisuje objekt (ne vraća ništa)
+        \\ \hline
+        type(\textit{object}) & ispisuje tip objekta
+        \\ \hline
+        id(\textit{object}) & ispisuje identitet objekta (adresu u memoriji) *
+        \\ \hline
     \end{tabular}
     \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{<broj><naredba><tekst>}}}
-        \\
-        ... čime će se \texttt{<naredba>} za umetanje (s tekstom) ponoviti \texttt{<broj>} puta. 
+        \footnotesize
+        * Svi objekti u Pythonu imaju svoj jedinstveni ID, koji se dodjeljuje objektu kada se objekt \textbf{kreira}. \\
+        ID objekta je adresa u memoriji i bit će drugačija svaki put kad se pokrene program. \\
+        Objekti kojima se vrijednosti mogu mijenjati bez promjene identiteta zovu se promjenljivi (engl. mutable) objekti, a oni kojima se vrijednost ne može mijenjati bez stvaranja novog objekta istog tipa zovu se nepromjenljivi (engl. immutable) objekti. \\
+        Promjena vrijednosti objekta obično se događa operatorom pridružbe ili djelovanjem metode na vrijednost objekta. \\
     \end{center}
 
-    % Brisanje
-    \section*{\color{ForestGreen} Brisanje}
+    \section*{\color{NavyBlue} Ostale funkcije}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        x       & brisanje znaka na kursoru (\textit{delete})               \\ \hline
-        X       & brisanje znaka ispred kursora (\textit{backspace})        \\ \hline \hline
-        d       & naredba za brisanje                                       \\ \hline
-        dd      & brisanje cijele linije                                    \\ \hline
+        range([start], end, [step]) & vraća sekvencu (raspon) brojeva od "start" do "end", s razlikom od "step"
+        \\ \hline
     \end{tabular}
-    \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{<naredba> = <broj><naredba><pokret>}}}
-        \\
-        ... čime će se \texttt{<naredba>} \textit{delete} ponoviti \texttt{<broj>} puta. 
-    \end{center}
-    \newpage
 
-    % Kopiranje
-    \section*{\color{ForestGreen} Kopiranje}
+    \section*{\color{NavyBlue} Deklaracija stringova}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        y       & naredba za kopiranje                                   \\ \hline
-        yy      & kopiranje cijele linije                                \\ \hline \hline
-        p       & naredba za kopiranje                                   \\ \hline
-        P       & kopiranje cijele linije                                \\ \hline
+        "text"                                  & klasičan način zapisa stringa                                            \\ \hline
+        """text"""                              & zapis stringa koji omogućuje prijelaz u novi red                         \\ \hline
+        f"text \{\textit{value}\} text"         & formatirani string koji evaluira vrijednost u vitičastim zagradama       \\ \hline
     \end{tabular}
     \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{<naredba> = <broj><naredba><pokret>}}}
-        \\
-        ... čime će se \texttt{<naredba>} \textit{yank} ili \textit{put} ponoviti \texttt{<broj>} puta. 
+        \footnotesize
+        \textbf{Prilikom deklaracije, mogu se koristiti i jednostruki navodnici!}
+        Stringovi nisu identiteno-promijenjivi... \\
+        \texttt{>> string1 = "Ivan"} \\
+        \texttt{>> string2 = string1} \\
+        \texttt{>> id(string1) == id(string2)} \\
+        \texttt{"True"} \\
+        \texttt{>> string1 = "Marko"} \\
+        \texttt{>> string2} \\
+        \texttt{"Ivan"} \\
+        \texttt{>> id(string1) == id(string2)} \\
+        \texttt{"False"} \\
+        ... što znači da promjena jedne ne veže promjenu druge.
     \end{center}
-    \newpage
-
-    % Registri
-    \section*{\color{ForestGreen} Registri}
-    Sve što je obrisano ili kopirano se sprema u \textit{system-wide} registre.
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        :reg            & pregled registra                                                  \\ \hline \hline
-        ""              & neimenovani (default) registar za y, d i x                        \\ \hline
-        "0              & registar za y                                                     \\ \hline
-        "1 - "9         & registar za d i x                                                 \\ \hline \hline
-        "a - "z         & registri za bilošto                                               \\ \hline
-        "A - "Z         & registri za \textit{append} u registre \texttt{"a - "z}           \\ \hline
-        "\_             & \textit{black hole} registar                                      \\ \hline
-        "+ "*           & sistemski \textit{clipboard}                                      \\ \hline
-    \end{tabular}
-    \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{<registar><naredba>}}}
-        \\
-        ... čime će se \texttt{<operacija>} (\textit{delete}, \textit{yank}, \textit{put}) spremiti/učitati u/iz registar/a. 
-    \end{center}
-    \newpage
     
-    % Pretraga
-    \section*{\color{ForestGreen} Pretraga}
-    \subsection*{\color{ForestGreen} Linijske pretrage}
-    Kursor se pozicionira na znaku:
-    \\
+    \section*{\color{NavyBlue} Osnovne operacije sa stringovima}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        f<znak>   & pretraga znaka unaprijed            \\ \hline
-        F<znak>   & pretraga znaka unazad               \\ \hline
-    \end{tabular}
-    \\
-    Kursor se pozicionira ispred znaka:
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        t<znak>   & pretraga znaka unaprijed            \\ \hline
-        T<znak>   & pretraga znaka unazad               \\ \hline
-    \end{tabular}
-    \\
-    Ponavljanje pretrage:
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        ;         & ponavljanje pretrage u istom smjeru         \\ \hline
-        ,         & ponavljanje pretrage u suprotnom smjeru     \\ \hline
-    \end{tabular}
-    \subsection*{\color{ForestGreen} Globalne pretrage}
-    Pretraga stringova:
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        /<string>   & pretraga unaprijed            \\ \hline
-        ?<string>   & pretraga unazad               \\ \hline
-    \end{tabular}
-    \\
-    Pretraga riječi ispod kursora:
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        *           & pretraga unaprijed        \\ \hline
-        \#          & pretraga unazad           \\ \hline
-    \end{tabular}
-    \\
-    Ponavljanje pretrage:
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        n         & ponavljanje pretrage u istom smjeru         \\ \hline
-        N         & ponavljanje pretrage u suprotnom smjeru     \\ \hline
+        "text"[0] & indeksiranje stringova (\texttt{"t"})
+        \\ \hline
+        "text"[0:2:1] & komad stringa (počevši od 0 do 2 (ne uključujući 2), s korakom 1) (\texttt{"te"})
+        \\ \hline
+        "abc" + "def" & povezivanje stringova (\texttt{"abcdef"})
+        \\ \hline
+        "abc" * 2 & umnožavanje stringova (\texttt{"abcabc"})
+        \\ \hline
     \end{tabular}
     \begin{center}
-        \large
-        Pretraga funkcionira kao pokret te vrijede sva pravila kombiniranja naredbi!
+        \footnotesize
+        Posljednji član stringa ima indeks -1, predzadnji -2, itd.
     \end{center}
-    \newpage
     
-    % Zamjena
-    \section*{\color{ForestGreen} Zamjena}
-    \subsection*{\color{ForestGreen} Klasična zamjena}
+    \section*{\color{NavyBlue} Funkcije sa stringovima}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        r                   & zamjena jednog znaka ispod kursora drugim znakom                                              \\ \hline
-        R                   & zamjena znak-po-znak do prekida unosa                                                         \\ \hline                            
-        s                   & zamjena jednog znaka ispod kursora s tekstom                                                  \\ \hline \hline
-        c                   & naredba za zamjenu                                                                            \\ \hline
-        cc                  & zamjena cijele linije                                                                         \\ \hline \hline
-        $\sim$              & zamjena znaka \textit{lowercase} $\rightleftarrows$ \textit{uppercase}                        \\ \hline
-        g$\sim$             & naredba za zamjenu znaka \textit{lowercase} $\rightleftarrows$ \textit{uppercase}             \\ \hline
-        g$\sim$$\sim$       & zamjena reda \textit{lowercase} $\leftrightarrows$ \textit{uppercase}                         \\ \hline \hline
-        gu                  & naredba za zamjenu znaka \textit{uppercase} $\rightarrow$ \textit{lowerrcase}                 \\ \hline
-        guu                 & zamjena reda \textit{uppercase} $\rightarrow$ \textit{lowercase}                              \\ \hline \hline
-        gU                  & naredba za zamjenu znaka \textit{lowercase} $\rightarrow$ \textit{uppercase}                  \\ \hline
-        gUU                 & zamjena reda \textit{lowercase} $\rightarrow$ \textit{uppercase}                              \\ \hline
+        input(\textit{prompt}) & traži vrijednost inputa u prompt (tipa string)
+        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Metode nad stringovima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.50cm}|}
+        \hline
+        \textit{string}.isnumeric() & \ding{51} & ispisuje \textbf{True} ako je string broj, a \textbf{False} ako nije
+        \\ \hline
+        \textit{string}.find(\textit{value}, \textit{[start]}, \textit{[end]}) & \ding{51} & vraća indeks prvog pojavljivanja "value"
+        \\ \hline
+        \textit{string}.index(\textit{value}, \textit{[start]}, \textit{[end]}) & \ding{51} & slično kao find, ali u slučaju nepronalaska izbacuje grešku
+        \\ \hline
+        \textit{string}.rfind(\textit{value}, \textit{[start]}, \textit{[end]}) & \ding{51} & vraća indeks zadnjeg pojavljivanja "value"
+        \\ \hline
+        \textit{string}.rindex(\textit{value}, \textit{[start]}, \textit{[end]}) & \ding{51} & slično kao rfind, ali u slučaju nepronalaska izbacuje grešku
+        \\ \hline
+        \textit{string}.lstrip(\textit{[character]}) & \ding{51} & uklanja niz "character" (ili razmak) s lijeve strane \textbf{kopije} stringa
+        \\ \hline
+        \textit{string}.rstrip(\textit{[character]}) & \ding{51} & uklanja niz "character" (ili razmak) s desne strane \textbf{kopije} stringa
+        \\ \hline
+        \textit{string}.strip(\textit{[character]}) & \ding{51} & uklanja niz "character" (ili razmak) s lijeve i desne strane \textbf{kopije} stringa
+        \\ \hline
+        \textit{string}.replace(\textit{oldvalue}, \textit{newvalue}, \textit{[count]}) & \ding{51} & mijenja "oldvalue" za "newvalue" (u prvih "count" pojavljivanja) \textbf{kopije} stringa
+        \\ \hline
+        \textit{string}.count(\textit{value}, \textit{[start]}, \textit{[end]}) & \ding{51} & ispisuje broj ponavljanja "value"
+        \\ \hline
+        \textit{string}.lower() & \ding{51} & ispisuje \textbf{kopiju} stringa kojemu su sva slova mala
+        \\ \hline
+        \textit{string}.upper() & \ding{51} & ispisuje \textbf{kopiju} stringa kojemu su sva slova velika
+        \\ \hline
+        \textit{string}.capitalize() & \ding{51} & ispisuje \textbf{kopiju} stringa kojemu je prvo slovo veliko
+        \\ \hline
+        \textit{string}.split(\textit{delimiter}) & \ding{51} & ispisuje \textbf{novu listu} nastalu razdvajanjem \textbf{kopije stringa} po graničniku
+        \\ \hline
+        \textit{delimiter}.join(\textit{iterable}) & \ding{51} & ispisuje \textbf{novi string} nastao spajanjem elemenata \textbf{kopije iterabla} po graničniku
+        \\ \hline
     \end{tabular}
     \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{<naredba> = <broj><naredba><pokret>}}}
+        \ding{55} - metoda \textbf{nema} povrat tj. \texttt{return}
         \\
-        ... čime će se \texttt{<naredba>} \texttt{c}, \texttt{g$\sim$}, \texttt{gu} ili \texttt{gU} ponoviti \texttt{<broj>} puta. 
+        \ding{51} - metoda \textbf{ima} povrat tj. \texttt{return}
+        \\
     \end{center}
-    \subsection*{\color{ForestGreen} \texttt{sed}-like zamjena}
+
+    \section*{\color{NavyBlue} Aritmetički operatori}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        +  & zbrajanje                      \\ \hline
+        -  & oduzimanje                     \\ \hline
+        *  & množenje                       \\ \hline
+        ** & potenciranje                   \\ \hline
+        /  & dijeljenje                     \\ \hline
+        // & cjelobrojno dijeljenje         \\ \hline
+        \% & ostatak cjelobrojnog djeljenja \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Operatori dodjele}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        =   & a = 5             \\ \hline
+        +=  & a = a + 5         \\ \hline
+        -=  & a = a - 5         \\ \hline
+        *=  & a = a * 5         \\ \hline
+        **= & a = a ** 5        \\ \hline
+        /=  & a = a / 5         \\ \hline
+        //= & a = a // 5        \\ \hline
+        \%= & a = a \% 5        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Operatori usporedbe vrijednosti}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        ==      & jednako           \\ \hline
+        !=      & nije jednako      \\ \hline
+        >       & veće              \\ \hline
+        >=      & veće ili jednako  \\ \hline
+        <       & manje             \\ \hline
+        <=      & manje ili jednako \\ \hline
+    \end{tabular}
     \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{:<opseg>s/<staro>/<novo>/[g]}}}
-        \\
-        ... čime se naredba zamjene \texttt{<staro>} za \texttt{<novo>} vrši na \texttt{<opseg>}.
-        \\
-        \texttt{<staro>} može uključivati i regularne izraze.
-        \\
-        Ako je uključen \textit{flag} \texttt{g} onda se zamjena radi na svim pojavljivama na liniji, a ne samo prvom.
+        \footnotesize
+        Izlaz može biti \texttt{True} ili \texttt{False}
+    \end{center}
+
+    \section*{\color{NavyBlue} Operatori usporedbe adresa u memoriji}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        is      & jednakost adresa u memoriji \\ \hline
+        is not  & nejednakost adresa u memoriji \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Operator provjerava \texttt{id(object1) == id(object2)} \\
+        Izlaz može biti \texttt{True} ili \texttt{False}
+    \end{center}
+
+    \section*{\color{NavyBlue} Logički operatori}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        and   & istinito ako su sve tvrdnje točne           \\ \hline
+        or    & istinito ako je barem jedna tvrdnja točna   \\ \hline
+        not   & inverzija (negacija) istinitosti tvrdnje    \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Izlaz može biti \texttt{True} ili \texttt{False}
+    \end{center}
+
+    \section*{\color{NavyBlue} Operatori članstva}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        in        & točnost postojanja člana u sekvenci         \\ \hline
+        not in    & netočnost postojanja člana u sekvenci       \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Izlaz može biti \texttt{True} ili \texttt{False}
+    \end{center}
+
+    \section*{\color{NavyBlue} Neistinite (lažne) vrijednosti}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        False & definicijska "laž"                                      \\ \hline
+        None  & "vrijednost" varijable bez vrijednosti (a = None)       \\ \hline                            
+        0     & 0 tipa cijelog broja                                    \\ \hline
+        0.0   & 0 tipa broja s pomičnim zarezom                         \\ \hline
+        ""    & prazni string (u bilo kojem formatu)                    \\ \hline
+        []    & prazan niz                                              \\ \hline
+        ()    & prazna n-torka                                          \\ \hline
+        \{\}  & prazan rječnik                                          \\ \hline
+        set() & prazan skup                                             \\ \hline
+        range(0) & prazan raspon                                        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Grananje}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        if \textit{<condition 1>}:                   & postavljanje prvog uvjeta                                         \\ 
+        \hspace{5mm}<code block 1>                   & kod koji se izvršava ako je prvi uvjet zadovoljen                 \\                             
+        elif \textit{<condition 2>}:                 & postavljanje drugog uvjeta                                        \\ 
+        \hspace{5mm}\textit{<code block 2}>          & kod koji se izvršava ako je drugi uvjet zadovoljen                \\ 
+        else:                                        & pokrivanje svih ostalih uvjeta                                    \\ 
+        \hspace{5mm}\textit{<code block 3}>          & kod koji se izvršava ako prvi i drugi uvjet nisu zadovoljeni      \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \texttt{if}, \texttt{elif} i \texttt{else} moraju koristiti iste indentacije! \\
+        \texttt{<code block 1>}, \texttt{<code block 2>} i \texttt{<code block 3>} moraju koristiti iste indentacije!
+    \end{center}
+    \begin{center}
+        \footnotesize
+        Zadovoljavanje bilo kojeg od uvjeta tj. "grane" rezultira izlaskom iz "stabla" i nastavljanjem izvršavanja daljnjeg koda.
+    \end{center}
+    \begin{center}
+        \footnotesize
+        Ni \texttt{elif} ni \texttt{else} sekcije nisu obavezne. \\
+        ... \texttt{elif} sekcija nije nužna ako se kod dijeli u samo dvije grane. \\
+        ... \texttt{else} sekcija nije nužna u slučajevima tipa \textit{else-do-nothing}. \\
+    \end{center}
+
+    \section*{\color{NavyBlue} \texttt{\textbf{while}} petlja}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        while \textit{<condition>}:                         & \texttt{<condition>} je uvjet iteracije                                                               \\ 
+        \hspace{5mm}\textit{<code block}>                   & kod koji se izvršava u svakoj iteraciji                                                               \\                             
+        \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \texttt{\textbf{while}} petlja se izvršava kad nije unaprijed poznat broj potrebnih iteracija. 
+    \end{center}
+    \begin{center}
+        \footnotesize
+        Petlja se izvršava dok je uvjet petlje zadovoljen. Kako bi završila, unutar same petlje mora doći do izmijene uvijeta. 
+    \end{center}
+
+    \section*{\color{NavyBlue} \texttt{\textbf{for}} petlja}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        for \textit{<iterator>} in \textit{<iterable>}:   & \texttt{<iterator>} je jedinični element strukture tj. podatkovne kolekcije \texttt{<iterable>}     \\ 
+        \hspace{5mm}\textit{<code block}>                 & kod koji se izvršava u svakoj iteraciji                                                             \\                             
+        \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \texttt{\textbf{for}} petlja se izvršava kad je unaprijed poznat broj potrebnih iteracija. 
+    \end{center}
+    \begin{center}
+        \footnotesize
+        U svakoj iteraciji iterator dobiva novu vrijednost. Petlja završava tek kad završe sve iteracije.
+    \end{center}
+
+    \section*{}
+    \begin{tabular}{|>{\tt}p{2.00cm}|>{\tt}p{12.00cm}|>{\tt}p{10.50cm}|}
+        \hline
+        Struktura   & Iterable                                                      & Iterator    \\ \hline
+        Range       & range(3, 20, 2)                                               & 3, 5, 7, 9, 11, 13, 15, 17, 19    \\ \hline
+        String      & "apple"                                                       & a, p, p, l, e                     \\ \hline
+        List        & ["apple", "banana", "cherry"]                                 & apple, banana, cherry             \\ \hline
+        Tuple       & ("apple", "banana", "cherry")                                 & apple, banana, cherry             \\ \hline             
+        Set         & \{"apple", "banana", "cherry"\}                               & apple, banana, cherry             \\ \hline
+        Dictionary  & \{"brand": "Ford", "model": "Mustang", "year": 1964\}         & brand, model, year                \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Naredba \texttt{\textbf{break}}}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        for \textit{<iterator>} in \textit{<iterable>}:     &                                                                                                       \\
+        \hspace{5mm}if \textit{<condition>}:              & postavljanje uvjeta koji prekida petlju                                                               \\ 
+        \hspace{5mm}break                                   & prekid petlje                                                                                         \\ 
+        \hspace{5mm}\textit{<code block>}                   & kod koji se (u suprotnom) izvršava u svakoj iteraciji                                                 \\                             
+        \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \texttt{break} služi kako bi se \textbf{prekinulo} izvršavanje \textbf{petlje}.
+    \end{center}
+
+    \section*{\color{NavyBlue} Naredba \texttt{\textbf{continue}}}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        for \textit{<iterator>} in \textit{<iterable>}:     &                                                                                                       \\
+        \hspace{5mm}if \textit{<condition>}:                & postavljanje uvjeta kojim se preskače trenutna iteracija                                              \\ 
+        \hspace{5mm}continue                                & preskok iteracije                                                                                     \\ 
+        \hspace{5mm}\textit{<code block>}                   & kod koji se (u suprotnom) izvršava u svakoj iteraciji                                                 \\                             
+        \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \texttt{continue} služi kako bi se \textbf{preskočilo} izvršavanje \textbf{iteracije}.
+    \end{center}
+
+    \section*{\color{NavyBlue} Definiranje funkcije}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        def \textit{<name>}(\textit{<parameters>}):         & definiranje imena i postavljanje parametara (odvojenih zarezom) koji se koriste u bloku koda \\
+        \hspace{5mm}\textit{<code block}>                   & blok koda kojeg će funkcija izvršavati svakim pozivanjem                                     \\ 
+        \hspace{5mm}return \textit{<value>}                 & povrat (rezultat) funkcije \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \texttt{return} vraća rezultat funkcije i \textbf{izlazi iz funkcije}, slično kao i \texttt{break} \\
+        funkcija ne mora imati \texttt{return} ako ne vraća rezultat, npr. ako radi samo \texttt{print} \\
+        funkcija ne mora imati \texttt{parameters} ako nema ulazne podatke. \\
+        \texttt{z = f(x,y)} \\
+        \texttt{z - \textit{<value>}} \\
+        \texttt{f - \textit{<name>}} \\
+        \texttt{x,y - \textit{<parameters>}} \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Pozivanje funkcije}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{<name>}(\textit{<arguments>})                           & pozivanje funkcije koja nije imala \texttt{return}                                                        \\ \hline
+        \textit{<variable>}=\textit{<name>}(\textit{<arguments>})       & pozivanje funkcije koja je imala \texttt{return} i pohranjivanje njenog rezultata u \texttt{variable}     \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \texttt{a = f(2,5)} \\
+        \texttt{a - \textit{<variable>}} \\
+        \texttt{f - \textit{<name>}} \\
+        \texttt{2,5 - \textit{<arguments>}} \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Parametri funkcije}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        def student(ime, prezime="Horvat", godina=1):                           & definiranje funkcije \texttt{student} s 1 obaveznim i 2 opcionalna parametara \\
+        \hspace{5mm}print(ime, prezime, "je", godina, '. godina')               & ispis funkcije \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Prvo se definiraju svi obavezni parametri, a zatim svi opcionalni parametri.
+    \end{center}
+
+    \section*{\color{NavyBlue} Pozicijski argumenti}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        student("Ivan")               & Ivan Horvat je 1. godina \\ \hline
+        student("Ivan", "Kovač", 2)   & Ivan Kovač je 2. godina \\ \hline
+        student("Ivan", "Kovač")      & Ivan Kovač je 1. godina \\ \hline
+        student("Ivan", 2)            & Ivan 2 je 1. godina \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Pozicijski argumenti zahtjevaju definirani redoslijed i dodjelujuje se s lijevo na desno. \\
+        "Nespareni" argumenti dobivaju podrazumjevanu vrijednost.
+    \end{center}
+
+    \section*{\color{NavyBlue} Argumenati ključnih riječi}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        student(ime="Ivan")                         & Ivan Horvat je 1. godina \\ \hline
+        student(ime="Ivan", godina=2)               & Ivan Horvat je 2. godina \\ \hline
+        student(prezime="Kovač", ime="Ivan")        & Ivan Kovač je 1. godina \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Argumenti ključnih riječi ne zahtjevaju definirani redoslijed. \\
+        Nedefinirani argumenti dobivaju podrazumjevanu vrijednost.
+    \end{center}
+
+    \section*{\color{NavyBlue} Miješani argumenti}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        student("Ivan", godina=2)                   & Ivan Horvat je 2. godina \\ \hline
+        student("Ivan", "Kovač", godina=2)          & Ivan Kovač je 2. godina \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Pozicijski argumenti se definiraju prije argumenata ključnih riječi. \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Primjeri krivog pozivanja funkcija}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        student()                               & pozivanje funkcije bez obaveznih argumenata \\ \hline
+        student(ime="Ivan", 2)                  & definiranje argumenta bez ključne riječi nakon onog s ključnom riječi \\ \hline
+        student("Ivan", 2, prezime="Kovač")     & dvostruko definiranje argumenta (pozicija 2 i ključna riječ "prezime") \\ \hline
+        student(kolegij="Matematika")           & definiranje nepostojećeg parametra \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Vidljivost varijabli}
+    \begin{itemize}
+        \item \textbf{globalne} varijable definirane su u glavnom tijelu programa i vidljive su svim funkcijama
         \begin{itemize}
-            \item \texttt{<opseg>} može biti npr.:
-            \begin{itemize}
-                \item \texttt{\%} na svim linijima
-                \item \texttt{.,\$} od trenutne do zadnje linije
-                \item \texttt{1,.} od prve do trenutne linije
-                \item \texttt{3} samo na trećoj liniji
-                \item \texttt{3,5} od treće do pete linije
-            \end{itemize}
+            \item varijable definirane unutar neke petlje (npr. iteratori) vidljive su i izvan te petlje
+            \item varijable definirane u bloku koda unutar grananja vidljive su i izvan grananja
         \end{itemize}
-    \end{center}
-    \newpage
-
-    % Objekti
-    \section*{\color{ForestGreen} Objekti}
-    Vim prepoznaje pojam "objekata".
-    Objekti u Vim-u su:
-    \\
+        \item \textbf{lokalne} varijable definirane su unutar neke funkcije i vidljve su toj funkciji i njenim pod-funkcijama
+        \begin{itemize}
+            \item varijable definirane unutar funkcije mogu se postaviti globalnima korištenjem ključne riječi \texttt{global}
+        \end{itemize}
+    \end{itemize}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        w         & riječ                           \\ \hline
-        s         & rečenica                        \\ \hline
-        p         & paragraf                        \\ \hline
-        ( )       & sadržaj oblih zagrada           \\ \hline
-        [ ]       & sadržaj uglatih zagrada         \\ \hline
-        \{ \}     & sadržaj vitičastih zagrada      \\ \hline
-        < >       & sadržaj izlomljenih zagrada     \\ \hline
-        "         & sadržaj navodnika               \\ \hline
-        '         & sadržaj navodnika               \\ \hline
-        `         & sadržaj navodnika               \\ \hline
-        t         & sadržaj \textit{tag}-a          \\ \hline
-    \end{tabular}
-    \\
-    Nad objektima moguće je izvoditi radnje kao što su \textit{delete}, \textit{yank}, \textit{change} i dr. 
-    Te radnje se modificiraju modifikatorima:
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        i         & ne uključuje "separator" objekta    \\ \hline
-        a         & uključuje "separator" objekata      \\ \hline
+        global \textit{<variable>} & postavljanje \texttt{<variable>} globalnom
+        \\
+        \textit{<variable>}=\textit{<value>} & definiranje vrijednosti varijable
+        \\ \hline
     \end{tabular}
     \begin{center}
-        \large
-        \textcolor{ForestGreen}{\texttt{\textbf{<naredba><modifikator><objekt>}}}
-        \\
-        ... čime će se izvršiti \texttt{<naredba>} unutar ili nad cijelim \texttt{<objektom>}. 
+        \footnotesize
+        Ako je određena varijabla definirana globalno, a zatim i više puta lokalno (rekurzivno) unutar funkcija, njena vrijednost u najunutarnjijoj funkciji imat će "najlokalniju" vidljivu vrijednost. \\
     \end{center}
-    \newpage
 
-    % Macro
-    \section*{\color{ForestGreen} Macro}
-    Macroi su niz naredbi, a služe za ponavljanje kompleksnih radnji tako što se iste snimaju i pohranjuju u zasebne registre.
-    \\
+    \section*{\color{NavyBlue} Liste}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        qa                              & započinje snimanje macroa koji će se pohraniti u registar \texttt{a}                                                      \\ \hline
-        q                               & završava snimanje macroa                                                                                                  \\ \hline
-        @a                              & izvršava snimljeni macro koji je pohranjen u registar \texttt{a}                                                          \\ \hline
-        :<opseg>normal @a               & izvršava snimljeni macro koji je pohranjen u registar \texttt{a} nad opsegom                                              \\ \hline
-        "ap                             & \texttt{put} registra u obliku teksta (znakovi za \texttt{esc} i sl. se upisuju u \textit{literal mode}-u nakon Ctrl+v)   \\ \hline
-        "add                            & brisanje/pohranjivanje teksta (niza naredbi) u registar                                                                   \\ \hline
-        let @a = '<macro>'              & upis \textit{macro}-a u konfiguracijsku datoteku \texttt{.vimrc}                                                          \\ \hline
+        \textit{list} = [1, 2, 3] & definiranje liste
+        \\ \hline
+        \textit{list} = [[1, 2, 3], [1, 2, 3], [1, 2, 3]] & definiranje ugniježđene liste
+        \\ \hline
     \end{tabular}
-    \newpage
-    
-    % Međuspremnici
-    \section*{\color{ForestGreen} Međuspremnici}
-    Međuspremnici su mjesta u memoriji gdje su učitane Vim datoteke.
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        :buffers :ls                                & otvara listu međuspremnika (otvoreni fileovi i trenutne pozicije kursora)     \\ \hline
-        :b 1                                        & otvara međuspremnik 1                                                         \\ \hline
-        :b file1.txt                                & otvara file1.txt ako se on nalazi u međuspremniku                             \\ \hline
-        :bnext :bn                                  & otvara idući file                                                             \\ \hline
-        :bprevious :bp                              & otvara predhodni file                                                         \\ \hline
-        :bfirst :bf                                 & otvara prvi file                                                              \\ \hline
-        :blast :bl                                  & otvara zadnji file                                                            \\ \hline
-        <Ctrl>+{\string ^}                          & otvara ranije otvoreni file                                                   \\ \hline
-        :badd file3.txt :ba file3.txt               & dodaje file u međuspremnik                                                    \\ \hline                                                                                                        
-        :bdelete [file3.txt] :bd [file3.txt]        & uklanja trenutni file/[file3.txt] iz međuspremnika                            \\ \hline
-        :bufdo \%s/<staro>/<novo>/g                 & izvršava naredbu za sve fileove                                               \\ \hline
-    \end{tabular}         
-    \\
-    Međuspremnici imaju posebne "oznake" koji definiraju njihovo stanje učitanosti/prikaza.
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        a                                           & file je učitan i prikazan (active)                                            \\ \hline 
-        h                                           & file je učitan i nije prikazan (hidden)                                       \\ \hline                                  
-                                                    & file nije učitan i nije prikazan (samo su učitani metapodaci)                 \\ \hline
-        \%                                          & file koji se trenutno pregledava                                              \\ \hline
-        \#                                          & označava prethodno otvoreni file                                              \\ \hline
-        +                                           & označava da je file uređen od zadnjeg spremanja                               \\ \hline
-    \end{tabular}         
-    \newpage              
-    
-    % Prozori
-    \section*{\color{ForestGreen} Prozori}
-    U odvojene prozoru mogu se staviti datoteke koje su učitane u međuspremnike.
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        :split [file] :sp [file] Ctrl+w s           & otvara datoteku u još jednom prozoru (horizontalno)                           \\ \hline
-        :vsplit [file] :vs [file] Ctrl+w v          & otvara datoteku u još jednom prozoru (vertikalno)                             \\ \hline
-        :ball :ba                                   & otvara sve datoteke iz međuspremnika u svoje prozore                          \\ \hline
-        Ctrl+w q                                    & zatvara trenutni prozor                                                       \\ \hline
-        :only :on Ctrl+w o                          & zatvara sve prozore osim trenutnog                                            \\ \hline
-        :windo \%s/<staro>/<novo>/g                 & izvršava naredbu na svim prozorima                                            \\ \hline
-    \end{tabular}         
-    \\
-    Prozorima se upravlja sljedećim naredbama:
-    \\
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
-        \hline
-        Ctrl+w w                                    & prebacuje se u drugi prozor                                                   \\ \hline
-        Ctrl+w h                                    & prebacuje se u prozor lijevo                                                  \\ \hline
-        Ctrl+w l                                    & prebacuje se u prozor desno                                                   \\ \hline
-        Ctrl+w j                                    & prebacuje se u prozor dolje                                                   \\ \hline
-        Ctrl+w k                                    & prebacuje se u prozor gore                                                    \\ \hline \hline
-        Ctrl+w +                                    & povećava prozor (vertikalno)                                                  \\ \hline
-        Ctrl+w -                                    & smanjuje prozor (vertikalno)                                                  \\ \hline
-        Ctrl+w >                                    & povećava prozor (horizontalno)                                                \\ \hline
-        Ctrl+w <                                    & smanjuje prozor (horizontalno)                                                \\ \hline
-        Ctrl+w \_                                   & maksimizira prozor po horizontali                                             \\ \hline
-        Ctrl+w |                                    & maksimizira prozor po vertikali                                               \\ \hline
-        Ctrl+w =                                    & svi prozoru postaju jednake veličine                                          \\ \hline \hline
-        Ctrl+w r                                    & rotira sadržaj prozora (2 $\leftarrow$ 1, 3 $\leftarrow$ 2, 1 $\leftarrow$ 3) \\ \hline
-        Ctrl+w R                                    & rotira sadržaj prozora (obrnuti smjer od gornjeg)                             \\ \hline
-        Ctrl+w H                                    & pozicionira aktivni prozor lijevo                                             \\ \hline
-        Ctrl+w L                                    & pozicionira aktivni prozor desno                                              \\ \hline
-        Ctrl+w J                                    & pozicionira aktivni prozor dolje                                              \\ \hline
-        Ctrl+w K                                    & pozicionira aktivni prozor gore                                               \\ \hline
-    \end{tabular}         
-    \newpage              
+    \begin{center}
+        \footnotesize
+        Liste su \textbf{uređene} strukture podataka što znači da je postoji redoslijed članova. \\
+        Članovi liste ne moraju biti isti tipovi podataka. \\
+        Liste su identiteno-promijenjive... \\
+        \texttt{>> list1 = [12, 9, 3, 7]} \\
+        \texttt{>> list2 = list1} \\
+        \texttt{>> id(list1) == id(list2)} \\
+        \texttt{"True"} \\
+        \texttt{>> list1.append(1)} \\
+        \texttt{>> list2} \\
+        \texttt{[12, 9, 3, 7, 1]} \\
+        \texttt{>> id(list1) == id(list2)} \\
+        \texttt{"True"} \\
+        ... što znači da promjena jedne veže promjenu druge.
+    \end{center}
 
-    % Ostalo
-    \section*{\color{ForestGreen} Ostalo}
+    \section*{\color{NavyBlue} Osnovne operacije s listama}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        :e <datoteka>                   & učitavanja datoteke u međuspremnik                                  \\ \hline
-        :r <datoteka>                   & paste sadržaja datoteke na mjestu kursora                           \\ \hline
-        :w [<ime>]                      & spremanje promjena [u datoteku pod nazivom ime]                     \\ \hline
-        :wq [<ime>]                     & spremanje promjena [u datoteku pod nazivom ime] i izlazak           \\ \hline
-        :q!                             & izlazak bez spremanja promjena                                      \\ \hline
-        :e!                             & ponovno učitavanje datoteke prije svih promjena                     \\ \hline
-        :wall                           & spremanje promjena datoteka iz svih međuspremnika                   \\ \hline
-        :wqall                          & spremanje promjena i izlazak iz svih međuspremnika                  \\ \hline
-        :qall!                          & izlazak iz svih međuspremnika bez spremanja                         \\ \hline
-        :eall!                          & ponovno učitavanje svih međuspremnika prije promjena                \\ \hline
-        :h [<naredba>]                  & otvaranje prozora za pomoć [oko naredbe]                            \\ \hline
-        :E                              & otvaranje \textit{explorer}-a za datoteke                           \\ \hline
-        :f                              & dodatne informacije o trenutnoj datoteci                            \\ \hline
-        :! <naredba>                    & izvršavanje naredbe u terminalu pa vraćanje u Vim                   \\ \hline
-        :r! <naredba>                   & ispis standardnog izalza naredbe u Vim na mjesto kursora            \\ \hline
-        u                               & \textit{undo} svih promjena                                         \\ \hline
-        <Ctrl>+r                        & \textit{redo} svih promjena                                         \\ \hline
-        .                               & ponavljanje naredbe                                                 \\ \hline
-    \end{tabular}         
-    \newpage              
-\end{document}            
+        \textit{list}[\textit{index}] & indeksiranje lista 
+        \\ \hline
+        \textit{list}[\textit{[start]}:\textit{[end]}\textit{[:step]}] & komad liste 
+        \\ \hline
+        \textit{list}[\textit{index}] = \textit{value} & postavljanje nove vrijednosti člana niza
+        \\ \hline
+        \textit{list}[\textit{[start]}:\textit{[end]}\textit{[:step]}] = \textit{list} & postavljanje nove vrijednosti komada liste s drugom listom (brisanje i umetanje)
+        \\ \hline
+        [1, 2, 3] + [4, 5, 6] & povezivanje listi (\texttt{[1, 2, 3, 4, 5, 6]})
+        \\ \hline
+        [1, 2, 3] * 2 & umnožavanje listi (\texttt{[1, 2, 3, 1, 2, 3]})
+        \\ \hline
+        del \textit{list}[\textit{start}\textit{[:end]}\textit{[:step]}] & briše član ili komad liste
+        \\ \hline
+        color = [255, 43, 19] & definiranje liste \#...
+        \\
+        red, green, blue = color & ... i raspakiravanje - pridruživanje po elemantima
+        \\ \hline
+        item = [4, "Pizza", "Plain", 16.98] & definiranje liste \#\#...
+        \\
+        quantity, *others, price = item & ... i raspakiravanje - pridruživanje po elemantima
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Posljednji član liste ima indeks -1, predposljednji -2, itd. \\
+        \# Lista se može jednostavo rastaviti ako ima jednak broj elemenata. \\
+        \#\# Lista se može "složeno" rastaviti tako da jedan element (označen s *) sakuplja sav višak.
+    \end{center}
+
+    \section*{\color{NavyBlue} Metode nad listama}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.50cm}|}
+        \hline
+        \textit{list}.append(\textit{object}) & \ding{55} & dodavanje objekta na kraj \textbf{originalne} liste
+        \\ \hline
+        \textit{list}.extend(\textit{iterable}) & \ding{55} & dodavanje rastavljene iterable na kraj \textbf{originalne} liste
+        \\ \hline
+        \textit{list}.insert(\textit{index}, \textit{object}) & \ding{55} & dodavanje objekta ispred člana pod indeksom na \textbf{originalnoj} listi 
+        \\ \hline
+        \textit{list}.clear() & \ding{55} & prazni \textbf{originalnu} listu
+        \\ \hline
+        \textit{list}.remove(\textit{value}) & \ding{55} & briše prvi član u \textbf{originalnoj} listi koji ima vrijednost \textit{value}
+        \\ \hline
+        \textit{list}.pop([\textit{index}]) & \ding{51} & uklanja zadnji član u \textbf{originalnoj} listi (član pod indeksom) i vraća uklonjenu vrijednost
+        \\ \hline
+        \textit{list}.count(\textit{value}) & \ding{51} & ispisuje broj ponavljanja "value"
+        \\ \hline
+        \textit{list}.reverse() & \ding{55} & invertira \textbf{originalnu} listu
+        \\ \hline
+        \textit{list}.sort([reverse=True]) & \ding{55} & (naopako) sortira \textbf{originalnu} listu
+        \\ \hline
+        \textit{list.copy()} & \ding{51} & kopira listu (korisno jer su liste identiteno-promjenljive)
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \ding{55} - metoda \textbf{nema} povrat tj. \texttt{return} \\
+        \ding{51} - metoda \textbf{ima} povrat tj. \texttt{return} \\
+    \end{center}
+
+\end{document}
