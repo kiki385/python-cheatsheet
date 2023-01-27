@@ -36,24 +36,40 @@
     \end{tabular}
 
     \section*{\color{NavyBlue} Osnovni tipovi varijabli / objekata}
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.75cm}|}
         \hline
-        str & (string), (uređeni) niz znakova
+        str & \ding{55} & (string), (uređeni) niz znakova
         \\ \hline
-        int & (integer), cijeli broj
+        int & \ding{55} & (integer), cijeli broj
         \\ \hline
-        float & broj s pomičnim zarezom
+        float & \ding{55} & broj s pomičnim zarezom
         \\ \hline
-        bool & (boolean), logička varijabla \textbf{True} ili \textbf{False}
+        bool & \ding{55} & (boolean), logička varijabla \textbf{True} ili \textbf{False}
         \\ \hline
     \end{tabular}
+    \begin{center}
+        \ding{55} - objekt \textbf{nije identiteno-promjenjiv} tj. \textit{immutable} je
+        \\
+        \ding{51} - objekt \textbf{je identiteno-promjenjiv} tj. \textit{mutable} je
+        \\
+    \end{center}
 
     \section*{\color{NavyBlue} Složeni tipovi varijabli / objekata}
-    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.75cm}|}
         \hline
-        range   & raspon - uređen (indeksiran) niz integera                                             \\ \hline
-        list    & lista - uređena (indeksirana) podatkovna kolekcija (niz objekata)                       \\ \hline
+        range & \ding{55} & raspon - uređen (indeksiran) niz integera
+        \\ \hline
+        list & \ding{51} & lista - uređena (indeksirana) podatkovna kolekcija (niz objekata)
+        \\ \hline
+        dict & \ding{51} & rječnik - neuređena (neindeksirana) podatkovna kolekcija parova ključ-vrijednost
+        \\ \hline
     \end{tabular}
+    \begin{center}
+        \ding{55} - objekt \textbf{nije promjenjiv} tj. \textit{immutable} je
+        \\
+        \ding{51} - objekt \textbf{je promjenjiv} tj. \textit{mutable} je
+        \\
+    \end{center}
 
     \section*{\color{NavyBlue} Konverzije varijabli}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
@@ -131,6 +147,13 @@
         \footnotesize
         Posljednji član stringa ima indeks -1, predzadnji -2, itd.
     \end{center}
+
+    \section*{\color{NavyBlue} Iteriranje kroz stringove}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        for \textit{char} in \textit{string}: & iteriranje kroz string
+        \\ \hline
+    \end{tabular}
     
     \section*{\color{NavyBlue} Funkcije sa stringovima}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
@@ -502,15 +525,17 @@
         Liste su \textbf{uređene} strukture podataka što znači da je postoji redoslijed članova. \\
         Članovi liste ne moraju biti isti tipovi podataka. \\
         Liste su identiteno-promijenjive... \\
-        \texttt{>> list1 = [12, 9, 3, 7]} \\
-        \texttt{>> list2 = list1} \\
-        \texttt{>> id(list1) == id(list2)} \\
-        \texttt{"True"} \\
-        \texttt{>> list1.append(1)} \\
-        \texttt{>> list2} \\
-        \texttt{[12, 9, 3, 7, 1]} \\
-        \texttt{>> id(list1) == id(list2)} \\
-        \texttt{"True"} \\
+        \texttt{
+            >> list1 = [12, 9, 3, 7] \\
+            >> list2 = list1 \\
+            >> id(list1) == id(list2) \\
+            True \\
+            >> list1.append(1) \\
+            >> list2 \\
+            {[12, 9, 3, 7, 1]} \\
+            >> id(list1) == id(list2) \\
+            True
+        } \\
         ... što znači da promjena jedne veže promjenu druge.
     \end{center}
 
@@ -547,6 +572,13 @@
         \#\# Lista se može "složeno" rastaviti tako da jedan element (označen s *) sakuplja sav višak.
     \end{center}
 
+    \section*{\color{NavyBlue} Iteriranje kroz liste}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        for \textit{item} in \textit{list}: & iteriranje kroz listu
+        \\ \hline
+    \end{tabular}
+
     \section*{\color{NavyBlue} Metode nad listama}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.50cm}|}
         \hline
@@ -575,5 +607,114 @@
         \ding{55} - metoda \textbf{nema} povrat tj. \texttt{return} \\
         \ding{51} - metoda \textbf{ima} povrat tj. \texttt{return} \\
     \end{center}
+
+    \section*{\color{NavyBlue} Rječnici}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{dict} = \{ & definiranje rječnika
+            \\
+            \hspace{10pt} \textit{key}: \textit{value},
+            \\
+            \hspace{10pt} \textit{key}: \textit{value}
+            \\
+        \}
+        \\ \hline
+        \textit{dict} = \{ & definiranje ugniježđenog rječnika \\
+            \hspace{10pt} \textit{outer\_key}: \{
+            \\
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value},
+            \\
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value}
+            \\
+            \hspace{10pt} \},
+            \\
+            \hspace{10pt} \textit{outer\_key}: \{ \\
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value},
+            \\
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value}
+            \\
+            \hspace{10pt} \}
+            \\
+            \}
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        \textit{key} mora biti \textbf{nepromjenljivi} tip objekta, \textit{value} može biti bilo koji tip objekta. \\
+        Ako liste promatramo kao parove indeks-vrijednost, onda rječnike možemo promatrati kao parove ključ-vrijednost. \\
+        Drugim riječima, u listama je vrijednost pohranjena na lokaciji indeksa, a u rječnicima na lokaciji ključa. \\
+        Iz tog razloga, rječnici služe za grupiranje podataka, ali rječnici nisu \textbf{nisu uređeni} objekti.
+        Rječnici su identiteno-promijenjivi... \\
+        \texttt{
+            >> dict1 = {1: "one"} \\
+            >> dict2 = dict1 \\
+            >> id(dict1) == id(dict2) \\
+            True \\
+            >> dict2[2] = "two" \\
+            >> dict1 \\
+            \{1: "one", 2: "two"\} \\
+            >> id(dict1) == id(dict2) \\
+            True
+        }
+        ... što znači da promjena jedne veže promjenu druge.
+    \end{center}
+
+    \section*{\color{NavyBlue} Osnovne operacije s rječnicima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{dict}[\textit{key}] & "indeksiranje" rječnika, odnosno dohvaćanje \textbf{vrijednosti} ključa
+        \\ \hline
+        \textit{dict}[\textit{key}] = \textit{value} & postavljanje nove \textbf{vrijednosti} već postojećeg ili novog \textbf{para}
+        \\ \hline
+        del \textit{dict}[\textit{key}] & briše \textbf{par}
+        \\ \hline
+        \textit{dict3} = \{**\textit{dict1}, **\textit{dict2}\} & spajanje rječnika 1 i 2 u rječnik 3
+        \\ \hline
+        \textit{dict3} = \textit{dict1} | \textit{dict2} & spajanje rječnika 1 i 2 u rječnik 3
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Ključevi moraju biti jedinstveni. \\
+        Prilikom manipulacije rječnika, mijenjaju se njihove \textbf{vrijednosti}, a ne \textbf{ključevi}.
+    \end{center}
+
+    \section*{\color{NavyBlue} Metode nad rječnicima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.50cm}|}
+        \hline
+        \textit{dict}.get(\textit{key}) & \ding{51} & vraća vrijednost ključa ako taj ključ postoji, a u suprotnom vraća \texttt{None}
+        \\ \hline
+        \textit{dict}.pop(\textit{key}) & \ding{51} & uklanja \textbf{par} ključ-vrijednost u \textbf{originalnom} rječniku i vraća uklonjenu \textbf{vrijednost}
+        \\ \hline
+        \textit{dict}.popitem() & \ding{51} & uklanja zadnje dodan \textbf{par} u \textbf{originalnom} rječniku i vraća uklonjen \textbf{par} kao \textbf{tuple}
+        \\ \hline
+        \textit{dict}.clear() & \ding{55} & prazni \textbf{originalni} rječnik
+        \\ \hline
+        \textit{dict}.keys() & \ding{51} & vraća "listu" \textbf{ključeva} (objekt tipa \texttt{dict\_keys})
+        \\ \hline
+        \textit{dict}.values() & \ding{51} & vraća "listu" \textbf{vrijednosti} (objekt tipa \texttt{dict\_values})
+        \\ \hline
+        \textit{dict}.items() & \ding{51} & vraća "listu tupleova", tj. "listu" \textbf{parova} (objekt tipa \texttt{dict\_items})
+        \\ \hline
+        \textit{dict}.update(\textit{dict}) & \ding{55} & osvježavanje \textbf{originalnog} rječnika s parovima drugog rječnika
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \ding{55} - metoda \textbf{nema} povrat tj. \texttt{return} \\
+        \ding{51} - metoda \textbf{ima} povrat tj. \texttt{return} \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Iteriranje kroz rječnike}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        for \textit{key} in \textit{dict}: & iteriranje kroz rječnik po \textbf{ključevima}
+        \\ \hline
+        for \textit{key} in \textit{dict}.keys(): & iteriranje kroz rječnik po \textbf{ključevima}
+        \\ \hline
+        for \textit{value} in \textit{dict}.values(): & iteriranje kroz rječnik po \textbf{vrijednostima}
+        \\ \hline
+        for \textit{key}, \textit{value} in \textit{dict}.items(): & iteriranje kroz rječnik po \textbf{parovima}
+        \\ \hline
+    \end{tabular}
 
 \end{document}
