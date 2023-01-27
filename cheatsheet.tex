@@ -63,8 +63,12 @@
         \\ \hline
         dict & \ding{51} & rječnik - neuređena (neindeksirana) podatkovna kolekcija parova ključ-vrijednost
         \\ \hline
+        tuple & \ding{55} & n-terac - uređena (indeksirana) \textbf{nepromjenljiva} podatkovna kolekcija
+        \\ \hline
+        set & \ding{55} & skup - neuređena (neindeksirana) podatkovna kolekcija \textbf{jedinstvenih} vrijednosti
+        \\ \hline
     \end{tabular}
-    \begin{center}
+    \begin{center} 
         \ding{55} - objekt \textbf{nije promjenjiv} tj. \textit{immutable} je
         \\
         \ding{51} - objekt \textbf{je promjenjiv} tj. \textit{mutable} je
@@ -588,6 +592,8 @@
         \\ \hline
         \textit{list}.insert(\textit{index}, \textit{object}) & \ding{55} & dodavanje objekta ispred člana pod indeksom na \textbf{originalnoj} listi 
         \\ \hline
+        \textit{list}.index(\textit{value}) & \ding{51} & vraća prvi indeks na kojem se nalazi \textbf{vrijednost}
+        \\ \hline
         \textit{list}.clear() & \ding{55} & prazni \textbf{originalnu} listu
         \\ \hline
         \textit{list}.remove(\textit{value}) & \ding{55} & briše prvi član u \textbf{originalnoj} listi koji ima vrijednost \textit{value}
@@ -714,6 +720,99 @@
         for \textit{value} in \textit{dict}.values(): & iteriranje kroz rječnik po \textbf{vrijednostima}
         \\ \hline
         for \textit{key}, \textit{value} in \textit{dict}.items(): & iteriranje kroz rječnik po \textbf{parovima}
+        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} N-terci}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{tuple} = (1, 2, 3,) & definiranje n-terca
+        \\ \hline
+        \textit{tuple} = ((1, 2, 3),(1, 2, 3),(1, 2, 3),) & definiranje ugniježđenog n-terca
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        N-terci su \textbf{uređene} strukture podataka što znači da je postoji redoslijed članova. \\
+        Za razliku od listi, kad se jednom kreiraju, ne mogu se mijenjati. \\
+        Preporuka je koristiti zarez na kraju zadnjeg elemeneta. Ako postoji samo jedan element, zarez je \textbf{obavezan}. \\
+        Elementi n-terca mogu biti bilo koji tipovi objekta. \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Osnovne operacije s n-tercima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{tuple}[\textit{index}] & indeksiranje n-terca 
+        \\ \hline
+        \textit{tuple}[\textit{[start]}:\textit{[end]}\textit{[:step]}] & komad liste 
+        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Metode nad n-tercima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.50cm}|}
+        \hline
+        \textit{tuple}.index(\textit{value}) & \ding{51} & vraća prvi indeks na kojem se nalazi \textbf{vrijednost}
+        \\ \hline
+        \textit{tuple}.count(\textit{value}) & \ding{51} & ispisuje broj ponavljanja \textbf{vrijednosti}
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \ding{55} - metoda \textbf{nema} povrat tj. \texttt{return} \\
+        \ding{51} - metoda \textbf{ima} povrat tj. \texttt{return} \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Skupovi}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{set} = \{1, 2, 3\} & definiranje skupa
+        \\ \hline
+        \textit{set} = set() & definiranje praznog skupa (jer je \texttt{\{\}} zauzeto za definiranje rječnika)
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Svi elementi skupa moraju biti \textbf{nepromjenljivi} tipovi objekta. \\
+        Set je kao rječnik, no ključevi nemaju par. \\
+        Setovi se ne mogu indeksirati jer su elementi "nasumično poslagani". \\
+        Set se zbog \textbf{sintakse definiranja}, \textbf{neindeksiranja} te \textbf{jedinstvenosti} članova može promatrati kao \textbf{niz ključeva}.
+    \end{center}
+
+    \section*{\color{NavyBlue} Osnovne operacije sa skupovima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{set} = set(\textit{list}) & pretvaranje liste u skup kako bi se uklonili duplikati
+        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Metode nad skupovima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.50cm}|}
+        \hline
+        \textit{set}.add(\textit{value}) & \ding{55} & dodaje \textbf{vrijednost} u \textbf{originalni} skup
+        \\ \hline
+        \textit{set}.remove(\textit{value}) & \ding{55} & uklanja \textbf{vrijednost} u \textbf{originalnom} skupu i generira grešku ako je nema
+        \\ \hline
+        \textit{set}.discard(\textit{value}) & \ding{55} & uklanja \textbf{vrijednost} u \textbf{originalnom} skupu, ali ne generira grešku ako je nema
+        \\ \hline
+        \textit{set}.clear() & \ding{55} & briše sadržaj liste
+        \\ \hline
+        \textit{set}.len() & \ding{55} & vraća broj elemenata skupa
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \ding{55} - metoda \textbf{nema} povrat tj. \texttt{return} \\
+        \ding{51} - metoda \textbf{ima} povrat tj. \texttt{return} \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Operacija sa skupovima}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{set1} \& \textit{set2} & \textbf{presjek}, \texttt{set1} $\cap$ \texttt{set2} (zajedničke vrijednosti skupova)
+        \\ \hline
+        \textit{set1} | \textit{set2} & \textbf{unija}, \texttt{set1} $\cup$ \texttt{set2} (sve vrijednosti skupova)
+        \\ \hline
+        \textit{set1} - \textit{set2} & \textbf{skupovna razlika}, \texttt{set1} $\setminus$ \texttt{set2} (\texttt{set1} umanjen za sve elemente \texttt{set2}, tj. jedinstveni elementi \texttt{set1})
+        \\ \hline
+        \textit{set2} - \textit{set1} & \textbf{skupovna razlika}, \texttt{set2} $\setminus$ \texttt{set1} (\texttt{set2} umanjen za sve elemente \texttt{set1}, tj. jedinstveni elementi \texttt{set2})
         \\ \hline
     \end{tabular}
 
