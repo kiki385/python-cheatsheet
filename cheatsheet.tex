@@ -405,34 +405,83 @@
     \section*{\color{NavyBlue} Definiranje funkcije}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        def \textit{<name>}(\textit{<parameters>}):         & definiranje imena i postavljanje parametara (odvojenih zarezom) koji se koriste u bloku koda \\
-        \hspace{5mm}\textit{<code block}>                   & blok koda kojeg će funkcija izvršavati svakim pozivanjem                                     \\ 
-        \hspace{5mm}return \textit{<value>}                 & povrat (rezultat) funkcije \\ \hline
+        def \textit{name}(\textit{params}): & definiranje imena funkcije i postavljanje parametara odvojenih zarezom, koji se koriste u bloku koda
+        \\
+        \hspace{5mm}\textit{<code block}> & blok koda kojeg će funkcija izvršavati svakim pozivanjem
+        \\
+        \hspace{5mm}return \textit{value} & povrat (rezultat) funkcije
+        \\ \hline
     \end{tabular}
     \begin{center}
         \footnotesize
         \texttt{return} vraća rezultat funkcije i \textbf{izlazi iz funkcije}, slično kao i \texttt{break} \\
         funkcija ne mora imati \texttt{return} ako ne vraća rezultat, npr. ako radi samo \texttt{print} \\
-        funkcija ne mora imati \texttt{parameters} ako nema ulazne podatke. \\
+        funkcija ne mora imati \texttt{params} ako nema ulazne podatke. \\
         \texttt{z = f(x,y)} \\
-        \texttt{z - \textit{<value>}} \\
-        \texttt{f - \textit{<name>}} \\
-        \texttt{x,y - \textit{<parameters>}} \\
+        \texttt{z - \textit{value}} \\
+        \texttt{f - \textit{name}} \\
+        \texttt{x,y - \textit{params}} \\
+    \end{center}
+
+    \section*{\color{NavyBlue} Definiranje funkcije s *args}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        def \textit{name}(\textit{params, *args}): & ... \texttt{*args} sakuplja \textbf{ostatak pozicijskih parametara} u \textbf{n-torku} (nepoznatog broj članova)
+        \\
+        \hspace{5mm}\textit{<code block}> & blok koda kojeg će funkcija izvršavati svakim pozivanjem
+        \\
+        \hspace{5mm}return \textit{value} & povrat (rezultat) funkcije
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Budući da \texttt{*args} sakuplja \textbf{ostatak pozicijskih parametara}, nije nužno da se prilikom poziva funkcije u tom parametru nešto nađe, tj. \textbf{nije obavezan}.
+    \end{center}
+
+    \section*{\color{NavyBlue} Definiranje funkcije s **kwargs}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        def \textit{name}(\textit{params, **kwargs}): & ... \texttt{**kwargs} sakuplja \textbf{ostatak parametara ključnih riječi} u \textbf{rječnik} (nepoznatog broj članova)
+        \\
+        \hspace{5mm}\textit{<code block}> & blok koda kojeg će funkcija izvršavati svakim pozivanjem
+        \\
+        \hspace{5mm}return \textit{value} & povrat (rezultat) funkcije
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \footnotesize
+        Budući da \texttt{*args} sakuplja \textbf{ostatak pozicijskih parametara}, nije nužno da se prilikom poziva funkcije u tom parametru nešto nađe, tj. \textbf{nije obavezan}.
+    \end{center}
+
+    \section*{\color{NavyBlue} Redoslijed parametara prilikom definiranja}
+    \begin{center}
+        \large \ttfamily
+        def \textit{name}(\textit{params, *args, default\_params, **kwargs})
     \end{center}
 
     \section*{\color{NavyBlue} Pozivanje funkcije}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        \textit{<name>}(\textit{<arguments>})                           & pozivanje funkcije koja nije imala \texttt{return}                                                        \\ \hline
-        \textit{<variable>}=\textit{<name>}(\textit{<arguments>})       & pozivanje funkcije koja je imala \texttt{return} i pohranjivanje njenog rezultata u \texttt{variable}     \\ \hline
+        \textit{name}(\textit{args})                           & pozivanje funkcije koja nije imala \texttt{return}
+        \\ \hline
+        \textit{variable} = \textit{name}(\textit{args})       & pozivanje funkcije koja je imala \texttt{return} i pohranjivanje njenog rezultata u \texttt{variable}
+        \\ \hline
     \end{tabular}
     \begin{center}
         \footnotesize
         \texttt{a = f(2,5)} \\
-        \texttt{a - \textit{<variable>}} \\
-        \texttt{f - \textit{<name>}} \\
-        \texttt{2,5 - \textit{<arguments>}} \\
+        \texttt{a - \textit{variable}} \\
+        \texttt{f - \textit{name}} \\
+        \texttt{2,5 - \textit{args}} \\
     \end{center}
+    
+
+    \section*{\color{NavyBlue} Raspakiravanje liste u pojedinačne argumente}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        \textit{name}(\textit{*list}) & članovi liste će se \textbf{raspakirati} u \textbf{pojedinačne argumente} funkcije
+        \\ \hline
+    \end{tabular}
 
     \section*{\color{NavyBlue} Parametri funkcije}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
@@ -459,7 +508,7 @@
         "Nespareni" argumenti dobivaju podrazumjevanu vrijednost.
     \end{center}
 
-    \section*{\color{NavyBlue} Argumenati ključnih riječi}
+    \section*{\color{NavyBlue} Argumenti ključnih riječi}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
         student(ime="Ivan")                         & Ivan Horvat je 1. godina \\ \hline
@@ -487,7 +536,7 @@
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
         student()                               & pozivanje funkcije bez obaveznih argumenata \\ \hline
-        student(ime="Ivan", 2)                  & definiranje argumenta bez ključne riječi nakon onog s ključnom riječi \\ \hline
+        student(ime="Ivan", 2)                  & definiranje pozicijskog argumenta nakon onog s ključnom riječi \\ \hline
         student("Ivan", 2, prezime="Kovač")     & dvostruko definiranje argumenta (pozicija 2 i ključna riječ "prezime") \\ \hline
         student(kolegij="Matematika")           & definiranje nepostojećeg parametra \\ \hline
     \end{tabular}
@@ -506,9 +555,9 @@
     \end{itemize}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
-        global \textit{<variable>} & postavljanje \texttt{<variable>} globalnom
+        global \textit{variable} & postavljanje \texttt{variable} globalnom
         \\
-        \textit{<variable>}=\textit{<value>} & definiranje vrijednosti varijable
+        \textit{variable}=\textit{value} & definiranje vrijednosti varijable
         \\ \hline
     \end{tabular}
     \begin{center}
