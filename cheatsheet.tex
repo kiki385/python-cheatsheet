@@ -171,6 +171,8 @@
         \hline
         \textit{string}.isnumeric() & \ding{51} & ispisuje \textbf{True} ako je string broj, a \textbf{False} ako nije
         \\ \hline
+        \textit{string}.isalpha() & \ding{51} & ispisuje \textbf{True} ako je string sastavljen isključivo od slova, a \textbf{False} ako ne
+        \\ \hline
         \textit{string}.find(\textit{value}, \textit{[start]}, \textit{[end]}) & \ding{51} & vraća indeks prvog pojavljivanja "value"
         \\ \hline
         \textit{string}.index(\textit{value}, \textit{[start]}, \textit{[end]}) & \ding{51} & slično kao find, ali u slučaju nepronalaska izbacuje grešku
@@ -864,5 +866,95 @@
         \textit{set2} - \textit{set1} & \textbf{skupovna razlika}, \texttt{set2} $\setminus$ \texttt{set1} (\texttt{set2} umanjen za sve elemente \texttt{set1}, tj. jedinstveni elementi \texttt{set2})
         \\ \hline
     \end{tabular}
+
+    \section*{\color{NavyBlue} Tipovi grešaka}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        SyntaxError & korištenje zabranjenih znakova (kao što je @), indentacijske greške, nepostojeće ":" nakon petlji, grana
+        \\ \hline
+        NameError & korištenje nepostojećih naredbi, ključnih riječi ili varijabli
+        \\ \hline
+        IndexError & pokušaj pristupanja nepostojećem indeksu liste ili n-torke
+        \\ \hline
+        KeyError & pokušaj pristupanja nepostojećeg ključa u rječniku
+        \\ \hline
+        TypeError & pokušaj manipulacije pogrešnog tipa objekata, npr. zbrajanja integera i stringa
+        \\ \hline
+        ValueError & korištenje pogrešne vrijednosti (ali dobrog tipa) unutar funkcije
+        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} Greške}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        Raise SyntaxError("\textit{message}") & podiže grešku tipa \texttt{SyntaxError} i ispisuje poruku
+        \\ \hline
+        Raise NameError("\textit{message}") & podiže grešku tipa \texttt{NameError} i ispisuje poruku
+        \\ \hline
+        Raise IndexError("\textit{message}") & podiže grešku tipa \texttt{IndexError} i ispisuje poruku
+        \\ \hline
+        Raise KeyError("\textit{message}") & podiže grešku tipa \texttt{KeyError} i ispisuje poruku
+        \\ \hline
+        Raise TypeError("\textit{message}") & podiže grešku tipa \texttt{TypeError} i ispisuje poruku
+        \\ \hline
+        Raise ValueError("\textit{message}") & podiže grešku tipa \texttt{ValueError} i ispisuje poruku
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \texttt{Raise} se ne koristi zbog korisnika program već zbog ostalih koji na programu rade. \\
+        Koristi se kako bi se prekinulo daljnje izvršavanje koda.
+    \end{center}
+
+    \section*{\color{NavyBlue} try i except}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        try: & kod koji bi potencijalno mogao generirati grešku 
+        \\
+        \hspace{5mm} {<code block>} & 
+        \\
+        except [ErrorType]: & kod koji se izvršava ako se u gornjem bloku generira greška [tipa ErrorType]
+        \\
+        \hspace{5mm} {<code block>} & 
+        \\ \hline
+        \hline
+        try: &
+        \\
+        \hspace{5mm} num = int(input("Unesite broj: ")) & kod koji će generirati grešku ako korisnik unese string
+        \\
+        except ValueError: &
+        \\
+        \hspace{5mm} num = 1 & broj koji se odabire ako je korisnik unio string
+        \\
+        \hspace{5mm} print("Pogrešan unos. Odabran je 1.")
+        \\
+        except EOFError: &
+        \\
+        \hspace{5mm} num = 1 & broj koji se odabire ako je korisnik izašao iz programa
+        \\
+        \hspace{5mm} print("Izlazak iz programa. Odabran je 1.")
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        Korištenjem \texttt{try} i \texttt{except} blokova, izbjegnuto je prekidanje izvršavanja koda. 
+    \end{center}
+
+    \section*{\color{NavyBlue} Pristupi programiranju}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        year = input("Enter a year: ") & \texttt{Look Before You Leap (LBYL)} \\
+        if year.isnumeric(): & \\
+        \hspace{5mm} year = int(year) & \\
+        else: & \\
+        \hspace{5mm} year = 2025 & \\
+        \hline
+        try: & \texttt{Easier to Ask Forgiveness than Permission (EAFP)} \\
+        \hspace{5mm} year = int(input("Enter a year: ")) & \\
+        except ValueError: & \\
+        \hspace{5mm} year = 2025 & \\
+        \hline
+    \end{tabular}
+    \begin{center}
+        \texttt{EAFP} se smatra "više Pythonski".
+    \end{center}
 
 \end{document}
