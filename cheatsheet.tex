@@ -13,6 +13,15 @@
 \usepackage{lastpage}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{pifont}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={python},
+    pdfpagemode=FullScreen,
+}
 
 % Dodaj header i footer
 \pagestyle{fancy}
@@ -955,6 +964,86 @@
     \end{tabular}
     \begin{center}
         \texttt{EAFP} se smatra "više Pythonski".
+    \end{center}
+
+    \section*{\color{NavyBlue} Uvoz cijelih modula}
+    \begin{tabular}{|>{\tt}p{6.00cm}|>{\tt}p{6.00cm}|>{}p{12.00cm}|}
+        \hline
+        import random & import random as rand & uvoz \textbf{modula} \texttt{random} (pod nazivom \texttt{rand})
+        \\
+        random.randint(1, 100) & rand.randint(1, 100) & korištenje \textbf{metode} \texttt{randint} \textbf{modula} \texttt{random}
+        \\ \hline
+        import calendar & import calendar as cal & uvoz \textbf{modula} \texttt{calendar} (pod nazivom \texttt{cal})
+        \\
+        calendar.isleap(2023) & cal.isleap(2023) & korištenje \textbf{metode} \texttt{isleap} \textbf{modula} \texttt{calendar}
+        \\ \hline
+        import math & import math as m & uvoz \textbf{modula} \texttt{math} (pod nazivom \texttt{m})
+        \\
+        math.sqrt(2) & m.sqrt(2) & korištenje \textbf{metode} \texttt{sqrt} \textbf{modula} \texttt{math}
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \textbf{Moduli} su Python skripte koje \textbf{importanjem} donose nove funkcionalnosti.
+        \\
+        \textbf{Import} se može shvatiti kao da se cijela skripta zalijepi u header.
+        \\
+        Nakon uvoza, dostupne su sve metode, funkcije i varijable te skripte.
+        \\
+        Moduli su tipa \texttt{class 'module'}
+    \end{center}
+
+    \section*{\color{NavyBlue} Uvoz specifične metode modula}
+    \begin{tabular}{|>{\tt}p{8.00cm}|>{\tt}p{8.00cm}|>{}p{8.00cm}|}
+        \hline
+        from random import randint & from random import randint as ri & uvoz \textbf{metode} \texttt{randint} (pod nazivom \texttt{ri})
+        \\
+        randint(1, 100) & ri(1, 100) & korištenje \textbf{metode} \texttt{randint}
+        \\ \hline
+        from calendar import isleap & from calendar import isleap as il & uvoz \textbf{metode} \texttt{isleap} (pod nazivom \texttt{il})
+        \\
+        isleap(2023) & il(2023) & korištenje \textbf{metode} \texttt{isleap}
+        \\ \hline
+        from math import sqrt & from math import sqrt as sq & uvoz \textbf{metode} \texttt{sqrt} (pod nazivom \texttt{sq})
+        \\
+        sqrt(2) & sq(2) & korištenje \textbf{metode} \texttt{sqrt}
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        Argument od \texttt{from} je \textbf{modul}, odnosno \textbf{Python skripta}.
+        \\
+        Argument od \texttt{import} je \textbf{funkcionalnost}, odnosno \textbf{metoda, funkcija ili varijabla} iz te Python skripte.
+        \\
+        Moguće je uvesti i \textbf{više} metoda nekog modula tako se \textbf{metode} \textbf{odvoje zarezima}.
+        \\
+        Moduće je uvesti i \textbf{sve} metode nekog modula tako da se \textbf{zadaje argument \texttt{*}}. To je korisno jer zatim nije potrebno koristiti ime modula kao prefiks.
+    \end{center}
+
+    \section*{\color{NavyBlue} Uvoz druge skripte}
+    \begin{tabular}{|>{\tt}p{8.00cm}|>{\tt}p{8.00cm}|>{}p{8.00cm}|}
+        \hline
+        import script & from script import func & uvoz \textbf{skripte} \texttt{script.py}
+        \\
+        script.func() & func() & korištenje \textbf{funkcije} \texttt{func} definirane u \texttt{script.py}
+        \\
+        script.var & var & korištenje \textbf{varijable} \texttt{var} definirane u \texttt{script.py}
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        Skripte koja se uvozi mora se nalaziti \textbf{u istom direktoriju} kao i skripta u koju se uvozi.
+    \end{center}
+
+    \section*{\color{NavyBlue} \texttt{pip} modul}
+    \begin{tabular}{|>{\tt}p{8.00cm}|>{}p{16.50cm}|}
+        \hline
+        sudo apt install -y python3-pip  & instalacija \texttt{pip} modula
+        \\ \hline
+        python3 -m pip ---version  & provjera verzije \texttt{pip} modula (za Python 3)
+        \\ \hline
+        python3 -m pip install \textit{package} & instalacija paketa pomoću \texttt{pip} modula (za Python 3) s \href{https://pypi.org/}{\textbf{pypi.org}}
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        Nakon instalacije, paket se može standardno uvoziti u Python s \texttt{import \textit{package}}.
     \end{center}
 
 \end{document}
