@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1675173732 "/home/kristijan/python-cheatsheet/cheatsheet.tex" "cheatsheet.pdf" "cheatsheet" 1675173733
+["pdflatex"] 1675275863 "/home/kristijan/python-cheatsheet/cheatsheet.tex" "cheatsheet.pdf" "cheatsheet" 1675275864
   "/etc/texmf/web2c/texmf.cnf" 1674400082 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/kristijan/python-cheatsheet/cheatsheet.tex" 1675173732 49824 a21521eee0c1b4082369e9d00a566e79 ""
+  "/home/kristijan/python-cheatsheet/cheatsheet.tex" 1675275863 55603 cb65afc950f05296fc26d9cea1d38a02 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -119,9 +119,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1674400111 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1674400148 2802085 c1f3b82cac0a929f9dc9f18f470485dc ""
-  "cheatsheet.aux" 1675173733 786 449ec0d75d0d0b24eecc1065ca2b20db "pdflatex"
-  "cheatsheet.out" 1675173732 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cheatsheet.tex" 1675173732 49824 a21521eee0c1b4082369e9d00a566e79 ""
+  "cheatsheet.aux" 1675275864 786 37121c291a7360f32edd0e587949495d "pdflatex"
+  "cheatsheet.out" 1675275864 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cheatsheet.tex" 1675275863 55603 cb65afc950f05296fc26d9cea1d38a02 ""
   "python.png" 1674399265 10102 7cbb8b7f3ec73ce6716fedaa4d63f6ce ""
   (generated)
   "cheatsheet.aux"

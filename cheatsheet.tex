@@ -678,30 +678,31 @@
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
         \textit{dict} = \{ & definiranje rječnika
-            \\
-            \hspace{10pt} \textit{key}: \textit{value},
-            \\
-            \hspace{10pt} \textit{key}: \textit{value}
-            \\
-        \}
+        \\
+        \hspace{10pt} \textit{key}: \textit{value}, &
+        \\
+        \hspace{10pt} \textit{key}: \textit{value} &
+        \\
+        \} &
         \\ \hline
         \textit{dict} = \{ & definiranje ugniježđenog rječnika \\
-            \hspace{10pt} \textit{outer\_key}: \{
+            \hspace{10pt} \textit{outer\_key}: \{ &
             \\
-            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value},
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value}, &
             \\
-            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value}
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value} &
             \\
-            \hspace{10pt} \},
+            \hspace{10pt} \}, &
             \\
-            \hspace{10pt} \textit{outer\_key}: \{ \\
-            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value},
+            \hspace{10pt} \textit{outer\_key}: \{ &
             \\
-            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value}
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value}, &
             \\
-            \hspace{10pt} \}
+            \hspace{10pt} \hspace{10pt} \textit{inner\_key}: \textit{value} &
             \\
-            \}
+            \hspace{10pt} \} &
+            \\
+            \} &
         \\ \hline
     \end{tabular}
     \begin{center}
@@ -934,13 +935,13 @@
         \\
         \hspace{5mm} num = 1 & broj koji se odabire ako je korisnik unio string
         \\
-        \hspace{5mm} print("Pogrešan unos. Odabran je 1.")
+        \hspace{5mm} print("Pogrešan unos. Odabran je 1.") &
         \\
         except EOFError: &
         \\
         \hspace{5mm} num = 1 & broj koji se odabire ako je korisnik izašao iz programa
         \\
-        \hspace{5mm} print("Izlazak iz programa. Odabran je 1.")
+        \hspace{5mm} print("Izlazak iz programa. Odabran je 1.") &
         \\ \hline
     \end{tabular}
     \begin{center}
@@ -1045,5 +1046,109 @@
     \begin{center}
         Nakon instalacije, paket se može standardno uvoziti u Python s \texttt{import \textit{package}}.
     \end{center}
+
+    \section*{\color{NavyBlue} Klase i objekti - definiranje}
+    \begin{tabular}{|>{\tt}p{10.00cm}|>{}p{14.50cm}|}
+        \hline
+        class Dog: & definiranje \textbf{klase} \texttt{Dog}
+        \\ & \\
+        \hspace{5mm} species = "C. familiaris" & definiranje \textbf{atributa klase}, \texttt{species}, zajedničkog svim instancama klase
+        \\
+        \hspace{5mm} num = 0 & definiranje \textbf{atributa klase}, \texttt{num}, zajedničkog svim instancama klase
+        \\
+        \hspace{5mm} location = "Pet centre" & definiranje \textbf{atributa klase}, \texttt{location}, zajedničkog svim instancama klase
+        \\ & \\
+        \hspace{5mm} @classmethod & dekorator koji govori da se iduća definicija funkcije odnosi na cijelu klasu
+        \\
+        \hspace{5mm} def relocate(cls, new\_location): & definiranje \textbf{metode} koja se može izvršavati nad \textbf{cijelom klasom} (ali i njeim instancama)
+        \\
+        \hspace{5mm} \hspace{5mm} cls.location = new\_location &
+        \\
+        \hspace{5mm} \hspace{5mm} return None &
+        \\ & \\
+        \hspace{5mm} def \_\_init\_\_(self, name): & definiranje \textbf{metode} \texttt{\_\_init\_\_}, koja \textbf{inicijalizira} pojedinu \textbf{instancu} klase
+        \\
+        \hspace{5mm} \hspace{5mm} self.name = name & definiranja \textbf{atributa instance}, \textbf{name} dodijeljenog prilikom inicijalizacije (iz argumenta)
+        \\
+        \hspace{5mm} \hspace{5mm} self.tricks = [] & definiranja \textbf{atributa instance}, \textbf{tricks} dodijeljenog prilikom inicijalizacije
+        \\
+        \hspace{5mm} \hspace{5mm} Dog.num += 1 & promjena \textbf{atributa klase}, \textbf{species} prilikom svake inicijalizacije instance
+        \\
+        \hspace{5mm} def learn(self, new\_trick): & definiranje \textbf{metode} koja se može izvršavati nad instancama klase
+        \\
+        \hspace{5mm} \hspace{5mm} self.tricks.append(new\_trick) &
+        \\
+        \hspace{5mm} \hspace{5mm} return None &
+        \\
+        \hspace{5mm} def perform(self, trick): & definiranje \textbf{metode} koja se može izvršavati nad instancama klase
+        \\
+        \hspace{5mm} \hspace{5mm} print(f"\{self.name\} performs \{trick\}!") &
+        \\
+        \hspace{5mm} \hspace{5mm} return None &
+        \\ & \\ \hline
+    \end{tabular}
+    \begin{center}
+        Kod definiranja metoda i init-a, nužno je postaviti parametar \texttt{self}.
+        \\
+        \texttt{self} znači da se odnosi na \textbf{pojedinu instancu klase}.
+        \\
+        Svaka \textbf{metoda} ima uvijek ima jedan "nevidljivi" argument - koji pripada parametru \texttt{self}.
+        \\
+        Nad svim pripadnicima određene \textbf{klase} mogu se izvršavati pripadajuće \textbf{metode}.
+        \\
+        Analogno vrijedi i za klase, ali ulogu \texttt{self}-a preuzima \texttt{cls}
+    \end{center}
+
+    \section*{\color{NavyBlue} Podklase (nasljeđivanje)}
+    \begin{tabular}{|>{\tt}p{10.00cm}|>{}p{14.50cm}|}
+        \hline
+        class Puppy(Dog): & definiranje \textbf{podklase} \texttt{Puppy}, \textbf{klase} \texttt{Dog}
+        \\
+        \hspace{5mm} def \_\_init\_\_(self, name, age): & definiranje \textbf{metode} \texttt{\_\_init\_\_}, koja \textbf{inicijalizira} pojedinu \textbf{instancu podklase}
+        \\
+        \hspace{5mm} \hspace{5mm} super().\_\_init\_\_(name) & pozivanje \texttt{\_\_init\_\_} metode nad \textbf{klasom} (lat. \textit{super} - iznad), s argumentom \texttt{name} \textbf{podkalse}
+        \\
+        \hspace{5mm} \hspace{5mm} self.age = age & definiranja \textbf{atributa} \texttt{age}, svojstvenog \textbf{podklasi}, definiranog  \textbf{inicijalizacijom podklase}
+        \\
+        \hspace{5mm} def whine(self): & definiranje \textbf{metode} koja je svojstvena samo \textbf{podklasi}
+        \\
+        \hspace{5mm} \hspace{5mm} print(f"\{self.name\}" whines!) &
+        \\
+        \hspace{5mm} \hspace{5mm} return None &
+        \\ \hline
+    \end{tabular}
+    \begin{center}
+        \textbf{Podklasa} \textbf{nasljeđuje} sve funkcionalnosti \textbf{klase}, uz dodatak sebi svojstvenih.
+        \\
+        \textbf{Podklasa} \textbf{ne mora} imati i vlastiti \texttt{\_\_init\_\_} - može naslijediti samo onaj od \textbf{klase}.
+        \\
+        \texttt{super().\_\_init\_\_(name)} nema argument \texttt{self} jer se \texttt{self} upisuje samo tijekom \textbf{definiranja metode}, dok se ovdje \textbf{poziva metoda}. Metoda se poziva, naravno, bez argumenta \texttt{self}, kao i u "tijelu" skripte.
+    \end{center}
+
+    \section*{\color{NavyBlue} Klase i objekti - korištenje}
+    \begin{tabular}{|>{\tt}p{10.00cm}|>{}p{14.50cm}|}
+        \hline
+        print(Dog.species) & ispis \textbf{atributa klase} \texttt{Dog}
+        \\ & \\
+        Dog.relocate("Zoo City") & izvršavanje \textbf{metode} \texttt{relocate} nad klasom \texttt{Dog}
+        \\ & \\
+        elton = Dog("Elton", "Australian Shepherd") & inicijalizacija \textbf{instance} \texttt{elton} uz argumenate
+        \\ & \\
+        print(elton.name) & ispis \textbf{atributa instance} \texttt{elton}
+        \\
+        print(elton.species) & ispis \textbf{atributa instance} \texttt{elton}, odnosno \textbf{atributa klase}, budući da joj pripada
+        \\ & \\
+        elton.learn("sit") & izvršavanje \textbf{metode} \texttt{learn} nad instancom \texttt{elton}
+        \\
+        elton.perform("sit") & izvršavanje \textbf{metode} \texttt{perform} nad instancom \texttt{elton}
+        \\ \hline
+    \end{tabular}
+
+    \section*{\color{NavyBlue} OOP}
+    \begin{tabular}{|>{\tt}p{8.00cm}|>{}p{16.50cm}|}
+        \hline
+        isinstance(\textit{object}, \textit{class}) & provjerava pripadnost \textbf{objekta} \textbf{klasi}
+        \\ \hline
+    \end{tabular}
 
 \end{document}
