@@ -641,6 +641,8 @@
         \hline
         for \textit{item} in \textit{list}: & iteriranje kroz listu
         \\ \hline
+        for \textit{item1}, \textit{item2} in \textit{listOfPairs}: & iteriranje kroz listu sastavljenu od parova, tipa \texttt{[[1, 2], [3, 4], [5, 6]]}
+        \\ \hline
     \end{tabular}
 
     \section*{\color{NavyBlue} Metode nad listama}
@@ -800,6 +802,15 @@
         Elementi n-terca mogu biti bilo koji tipovi objekta. \\
     \end{center}
 
+    \section*{\color{NavyBlue} Iteriranje kroz n-torke}
+    \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
+        \hline
+        for \textit{item} in \textit{tuple}: & iteriranje kroz n-torku
+        \\ \hline
+        for \textit{item1}, \textit{item2} in \textit{tupleOfPairs}: & iteriranje kroz n-torku sastavljenu od parova, tipa \texttt{((1, 2), (3, 4), (5, 6))}
+        \\ \hline
+    \end{tabular}
+
     \section*{\color{NavyBlue} Osnovne operacije s n-tercima}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{}p{15.50cm}|}
         \hline
@@ -807,7 +818,20 @@
         \\ \hline
         \textit{tuple}[\textit{[start]}:\textit{[end]}\textit{[:step]}] & komad liste 
         \\ \hline
+        color = (255, 43, 19) & definiranje n-torke \#...
+        \\
+        red, green, blue = color & ... i raspakiravanje - pridruživanje po elemantima
+        \\ \hline
+        item = (4, "Pizza", "Plain", 16.98) & definiranje n-torke \#\#...
+        \\
+        quantity, *others, price = item & ... i raspakiravanje - pridruživanje po elemantima
+        \\ \hline
     \end{tabular}
+    \begin{center}
+        \footnotesize
+        \# N-torka se može jednostavo rastaviti ako ima jednak broj elemenata. \\
+        \#\# N-torka se može "složeno" rastaviti tako da jedan element (označen s *) sakuplja sav višak.
+    \end{center}
 
     \section*{\color{NavyBlue} Metode nad n-tercima}
     \begin{tabular}{|>{\tt}p{9.00cm}|>{\tt}p{0.25cm}|>{}p{14.50cm}|}
